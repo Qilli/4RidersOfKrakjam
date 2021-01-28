@@ -12,7 +12,7 @@ public class PersonsRandomizer : MonoBehaviour
     {
         RandomizeClothes(person);
 
-        if (person.IsPrisoner)
+        if (!person.IsPrisoner)
         {
             RandomizeBody(person);
         }

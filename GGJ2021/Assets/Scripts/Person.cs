@@ -12,4 +12,11 @@ public class Person : MonoBehaviour
         _isPrisoner = true;
         _prisonerReference = reference;
     }
+
+    private void OnMouseDown()
+    {
+        // Set up this person to be caught by police forces
+
+        Debug.Log(this.gameObject.name + "got clicked!");
+    }
 }
