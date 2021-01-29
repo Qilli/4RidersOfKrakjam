@@ -24,6 +24,7 @@ public class PersonsSpawner : MonoBehaviour
     [SerializeField] PrisonerReferenceDisplayer _referenceDisplayer = null;
     [SerializeField] StartingPortraitsDisplayer _startDisplayer = null;
     [SerializeField] MainGameManager _gameManager = null;
+    [SerializeField] CatchingConfirmator _confirmator = null;
 
     [Header("Spawned elements")]
     [SerializeField] List<Person> _civilians = new List<Person>();
@@ -88,6 +89,7 @@ public class PersonsSpawner : MonoBehaviour
            
             newCivilian.transform.SetParent(_civiliansParent);
             newCivilian.gameObject.name = "Civilian " + i;
+            newCivilian.SetConfirmator(_confirmator);
             _civilians.Add(newCivilian);
             _randomizer.RandomizePerson(newCivilian);
         }
@@ -101,6 +103,7 @@ public class PersonsSpawner : MonoBehaviour
             var newPrisoner = Instantiate(_basicPersonPrefab, posToSpawn, Quaternion.identity, _prisonersParent) as Person;
             newPrisoner.transform.SetParent(_prisonersParent);
             newPrisoner.gameObject.name = "Prisoner " + i;
+            newPrisoner.SetConfirmator(_confirmator);
             _prisoners.Add(newPrisoner);
 
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];

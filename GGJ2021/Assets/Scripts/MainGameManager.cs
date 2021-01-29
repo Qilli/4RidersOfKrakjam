@@ -9,8 +9,6 @@ using UnityEngine.UI;
 /// </summary>
 public class MainGameManager : MonoBehaviour
 {
-    // Win conditions -> Catch all prisoners
-    // Fail condtions -> Prisoners escaped / Last transport left / Too many civilians caught?\
     [SerializeField] int _civiliansCaughtThreshold = 5;
     [SerializeField] GameSummaryDisplayer _summaryDisplayer = null;
 
@@ -19,14 +17,25 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] int _caughtPrisoners = 0;
     [SerializeField] int _caughtCivilians = 0;
     [SerializeField] List<Person> _caughtPersons = new List<Person>();
+    [SerializeField] Transport _lastTransport = null;
 
     [Header("UI Elements")]
     [SerializeField] Text _prisonersToCatchText = null;
     [SerializeField] Text _caughtPersonsText = null;
 
+    private void Awake()
+    {
+        _lastTransport = null;
+    }
+
     public void SetSpawnedPrisonerAmounts(int amount)
     {
         _spawnedPrisoners = amount;
+    }
+
+    public void SetLastTransport(Transport transport)
+    {
+        _lastTransport = transport;
     }
 
     public void PersonCaught(Person person)
@@ -43,6 +52,11 @@ public class MainGameManager : MonoBehaviour
         _caughtPersons.Add(person);
     }
 
+    internal void NotifyPrisonerEscaped(Person p, Transport transport)
+    {
+        Debug.Log("Notified escaped prisoner using: " + transport.name);
+    }
+
     private void Update()
     {
         if(ShouldGoToSummary())
@@ -54,10 +68,23 @@ public class MainGameManager : MonoBehaviour
 
     private bool ShouldGoToSummary()
     {
-        if (_caughtCivilians == _spawnedPrisoners)
+        if (_caughtPrisoners == _spawnedPrisoners)
+        {
+            Debug.Log("Everyone caught");
             return true;
+        }
 
-        // If last transport left
+        if(_caughtCivilians >= _civiliansCaughtThreshold)
+        {
+            Debug.Log("Too many civilians caught");
+            return true;
+        }
+
+        if(_lastTransport && _lastTransport.IsDeparted)
+        {
+            Debug.Log("Last transport departed");
+            return true;
+        }
 
         return false;
     }
@@ -65,7 +92,6 @@ public class MainGameManager : MonoBehaviour
     private void DisplaySummary()
     {
         // Disable other elements
-        Debug.Log("should display summary");
         _summaryDisplayer.DisplaySummary(_caughtPersons);
     }
 }

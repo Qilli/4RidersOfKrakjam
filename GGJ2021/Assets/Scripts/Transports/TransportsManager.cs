@@ -16,6 +16,8 @@ public class TransportsManager : MonoBehaviour
     [SerializeField] float _arrivalTimer = 0;
     [SerializeField] float _arrivalThreshold = 0;
 
+    [SerializeField] MainGameManager _gameManager = null;
+
     private void Start()
     {
         ShuffleTransports();
@@ -43,13 +45,23 @@ public class TransportsManager : MonoBehaviour
 
         // Handle close to arrival case ONCE
 
-        if(_arrivalTimer > _arrivalThreshold && _transports.Count > 0)
+        if (_arrivalTimer > _arrivalThreshold && _transports.Count > 0)
         {
             SetNewTimer();
 
             Debug.Log("Something arrives");
             _transports[0].Arrive();
             _transports.RemoveAt(0);
+        }
+
+        NotifyOfLastTransport();
+    }
+
+    private void NotifyOfLastTransport()
+    {
+        if (_transports.Count == 1)
+        {
+            _gameManager.SetLastTransport(_transports[0]);
         }
     }
 

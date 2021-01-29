@@ -10,18 +10,15 @@ public class SceneLoaderSO : ScriptableObject
     public void LoadMainMenuScene()
     {
         SceneManager.LoadScene(_mainMenuSceneIndex);
-        Debug.Log("Loading menu scene");
     }
 
     public void LoadGameScene()
     {
         SceneManager.LoadScene(_gameSceneIndex);
-        Debug.Log("Loading Game scene");
     }
 
     public void QuitApplication()
     {
         Application.Quit();
-        Debug.Log("Quitting");
     }
 }

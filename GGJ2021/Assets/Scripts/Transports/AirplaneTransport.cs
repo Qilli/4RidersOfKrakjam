@@ -1,12 +1,15 @@
-﻿public class AirplaneTransport : Transport
+﻿using UnityEngine;
+
+public class AirplaneTransport : Transport
 {
     public override void Arrive()
     {
-        throw new System.NotImplementedException();
+        base.Arrive();
+        Debug.Log("Airplane arriving!");
     }
 
     public override void Depart()
     {
-        throw new System.NotImplementedException();
+        base.Depart();
     }
 }

@@ -31,6 +31,9 @@ public class Person : MonoBehaviour
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
+    Vector3 _startingPosition = new Vector3();
+    CatchingConfirmator _confirmator = null;
+
     public void SetAsPrisoner(PrisonerReference reference)
     {
         _isPrisoner = true;
@@ -57,12 +60,31 @@ public class Person : MonoBehaviour
         _policeResponder = FindObjectOfType<PoliceResponder>();
     }
 
+    private void Start()
+    {
+        _startingPosition = this.transform.position;
+    }
+
     private void OnMouseDown()
     {
-        // Set up this person to be caught by police forces
+        _confirmator.DisplayConfirmationPrompt(this);
+    }
 
-        // Display some confirmation UI?
-
+    public void GetCaught()
+    {
         _policeResponder.CatchThatGuy(this);
+    }
+
+    internal void GetBackToStart()
+    {
+        this.transform.position = _startingPosition;
+
+        // Start walking again to POIs
+        Debug.Log("Person walking again");
+    }
+
+    internal void SetConfirmator(CatchingConfirmator confirmator)
+    {
+        _confirmator = confirmator;
     }
 }
