@@ -7,32 +7,21 @@ public class Person : MonoBehaviour
     [Header("Prisoner Status")]
     [SerializeField] bool _isPrisoner = false;
     [SerializeField] PrisonerReference _prisonerReference = null;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceToEnterTransport = 50;
 
     [SerializeField] List<GameObject> _personElements = new List<GameObject>();
 
-/*    [Header("Clothes")] // Switch it just to a list of decorations to be spawned?
-    [SerializeField] GameObject _trousers = null;
-    [SerializeField] GameObject _shirts = null;
-    [SerializeField] GameObject _shirtDecor = null;
-    [SerializeField] GameObject _glasses = null;
-    [SerializeField] GameObject _inHandDecors = null;
-    [SerializeField] GameObject _neckDecor = null;
-    [SerializeField] GameObject _headDecor = null;
-
-    [Header("Body")]
-    [SerializeField] GameObject _skinTone = null;
-    [SerializeField] GameObject _leftHandTatoo = null;
-    [SerializeField] GameObject _rightHandTatoo = null;
-    [SerializeField] GameObject _hairAndBeard = null;*/
-
     [Header("Other")]
     [SerializeField] PoliceResponder _policeResponder = null; // Maybe inject this
+    [SerializeField] PositionType.PositionsType _type;
 
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
+
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -58,6 +47,35 @@ public class Person : MonoBehaviour
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
+    }
+
+    internal void TransportHasArrived(PositionType.PositionsType type)
+    {
+        if (type != _type) return;
+
+        if(!_isPrisoner)
+        {
+            if (UnityEngine.Random.Range(0, 100) < _chanceToEnterTransport)
+            {
+                Debug.Log("Boarding transport: " + type);
+                BoardTransport();
+            }
+            else
+            {
+                Debug.Log("Not interested in boarding: " + type);
+            }
+        }
+        else
+        {
+            Debug.Log("Escaping as a prisoner via: " + type);
+            BoardTransport();
+        }
+    }
+
+    private void BoardTransport()
+    {
+        // Some logic to navigate us into transport
+        // Call Board transprot on transport when arrived
     }
 
     private void Start()
@@ -86,5 +104,10 @@ public class Person : MonoBehaviour
     internal void SetConfirmator(CatchingConfirmator confirmator)
     {
         _confirmator = confirmator;
+    }
+
+    internal void SetPositionType(PositionType.PositionsType type)
+    {
+        _type = type;
     }
 }

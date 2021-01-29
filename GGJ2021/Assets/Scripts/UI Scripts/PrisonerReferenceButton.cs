@@ -24,7 +24,7 @@ public class PrisonerReferenceButton : MonoBehaviour
 
     public void DisplayDetails()
     {
-        Debug.Log("Displaying details");
+        Debug.Log("Displaying details of: " + _reference.name);
         _detailsPanel.DisplayDetailsOfReference(_reference);
     }
 

@@ -7,72 +7,159 @@ using UnityEngine;
 /// </summary>
 public class PersonsRandomizer : MonoBehaviour
 {
-    [Header("Clothes")]
-    [SerializeField] List<GameObject> _trousers = new List<GameObject>();
-    [SerializeField] List<GameObject> _shirts = new List<GameObject>();
-    [SerializeField] List<GameObject> _shirtDecor = new List<GameObject>();
-    [SerializeField] List<GameObject> _glasses = new List<GameObject>();
-    [SerializeField] List<GameObject> _inHandDecors = new List<GameObject>();
-    [SerializeField] List<GameObject> _neckDecor = new List<GameObject>();
-    [SerializeField] List<GameObject> _headDecor = new List<GameObject>();
+    [SerializeField] List<Color> _clothsColor = new List<Color>();
+    [SerializeField] List<Color> _skinTones = new List<Color>();
+    [SerializeField] List<Color> _hairColors = new List<Color>();
 
-    [Header("Body")]
-    [SerializeField] List<GameObject> _skinTone = new List<GameObject>();
-    [SerializeField] List<GameObject> _leftHandTatoo = new List<GameObject>();
-    [SerializeField] List<GameObject> _rightHandTatoo = new List<GameObject>();
-    [SerializeField] List<GameObject> _hairAndBeard = new List<GameObject>();
+    // Serialize chances
+    [Header("Chances")]
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceForFemale = 50.0f;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceForLuggage = 50.0f;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceForBackpack = 50.0f;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceForShirtDecor = 50.0f;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] float _chanceForGlasses = 50.0f;
 
     public void RandomizePerson(Person person)
     {
-        List<GameObject> newElements = new List<GameObject>();
+        var female = UnityEngine.Random.Range(0, 100) > _chanceForFemale;
+        var useLuggage = UnityEngine.Random.Range(0, 100) > _chanceForLuggage;
+        var useBackpack = UnityEngine.Random.Range(0, 100) > _chanceForBackpack;
+        var useShirtDecor = UnityEngine.Random.Range(0, 100) > _chanceForShirtDecor;
+        var useGlasses = UnityEngine.Random.Range(0, 100) > _chanceForGlasses;
 
-        newElements.AddRange(RandomizeClothes());
+        var components = person.gameObject.GetComponentsInChildren<BodyPart>();
 
-        if (!person.IsPrisoner)
+        var trousersColor = _clothsColor[UnityEngine.Random.Range(0, _clothsColor.Count)];
+        var skinTone = _skinTones[UnityEngine.Random.Range(0, _skinTones.Count)];
+        var hairColor = _hairColors[UnityEngine.Random.Range(0, _hairColors.Count)];
+        var shirtColor = _clothsColor[UnityEngine.Random.Range(0, _clothsColor.Count)];
+        var backpackColor = _clothsColor[UnityEngine.Random.Range(0, _clothsColor.Count)];
+
+        List<BodyPart> hairs = new List<BodyPart>();
+        List<BodyPart> shirtDecors = new List<BodyPart>();
+        List<BodyPart> mouths = new List<BodyPart>();
+        List<BodyPart> brows = new List<BodyPart>();
+        List<BodyPart> glasses = new List<BodyPart>();
+
+        foreach (var bp in components)
         {
-            newElements.AddRange(RandomizeBody());
+            bp.gameObject.SetActive(false);
+
+            if (bp.Type == BodyPart.BodyPartType.Trousers)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = trousersColor;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.FemaleHead && female)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = skinTone;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.MaleHead && !female)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = skinTone;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.SkinPart)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = skinTone;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.HairFemale && female)
+            {
+                hairs.Add(bp);
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.HairMale && !female)
+            {
+                hairs.Add(bp);
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.Shirt)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = shirtColor;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.Luggage && useLuggage)
+            {
+                bp.gameObject.SetActive(true);
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.Backpack && useBackpack)
+            {
+                bp.gameObject.SetActive(true);
+                bp.GetComponent<SpriteRenderer>().color = backpackColor;
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.EyesFemale && female)
+            {
+                bp.gameObject.SetActive(true);
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.EyesMale && !female)
+            {
+                bp.gameObject.SetActive(true);
+            }
+
+            if (bp.Type == BodyPart.BodyPartType.ShirtDecor && useShirtDecor)
+            {
+                shirtDecors.Add(bp);
+            }
+
+            if(bp.Type == BodyPart.BodyPartType.Mouth)
+            {
+                mouths.Add(bp);
+            }
+
+            if(bp.Type == BodyPart.BodyPartType.Brows)
+            {
+                brows.Add(bp);
+            }
+
+            if(bp.Type == BodyPart.BodyPartType.Glasses && useGlasses)
+            {
+                glasses.Add(bp);
+            }
+
+            if(bp.Type == BodyPart.BodyPartType.AlwaysOn)
+            {
+                bp.gameObject.SetActive(true);
+            }
+
         }
-        else
+
+        var hair = hairs[UnityEngine.Random.Range(0, hairs.Count)];
+        hair.GetComponent<SpriteRenderer>().color = hairColor;
+        hair.gameObject.SetActive(true);
+
+        var mouth = mouths[UnityEngine.Random.Range(0, mouths.Count)];
+        mouth.gameObject.SetActive(true);
+
+        var brow = brows[UnityEngine.Random.Range(0, brows.Count)];
+        brow.gameObject.SetActive(true);
+
+        if(useGlasses)
         {
-            newElements.AddRange(person.PrisonerReference.GetPrisonerElements());
+            var glass = glasses[UnityEngine.Random.Range(0, glasses.Count)];
+            glass.gameObject.SetActive(true);
         }
 
-        person.SetPersonLooks(newElements);
+        if (useShirtDecor)
+        {
+            var decor = shirtDecors[UnityEngine.Random.Range(0, shirtDecors.Count)];
+            decor.gameObject.SetActive(true);
+            decor.GetComponent<SpriteRenderer>().color = backpackColor;
+        }
     }
 
-    private List<GameObject> RandomizeBody()
-    {
-        List<GameObject> elements = new List<GameObject>();
-
-        elements.Add(ChooseRandomOf(_skinTone));
-        elements.Add(ChooseRandomOf(_leftHandTatoo));
-        elements.Add(ChooseRandomOf(_rightHandTatoo));
-        elements.Add(ChooseRandomOf(_hairAndBeard));
-        //Debug.Log("Body randomized");
-
-        return elements;
-    }
-
-    private List<GameObject> RandomizeClothes()
-    {
-        List<GameObject> elements = new List<GameObject>();
-
-        elements.Add(ChooseRandomOf(_trousers));
-        elements.Add(ChooseRandomOf(_shirts));
-        elements.Add(ChooseRandomOf(_shirtDecor));
-        elements.Add(ChooseRandomOf(_glasses));
-        elements.Add(ChooseRandomOf(_inHandDecors));
-        elements.Add(ChooseRandomOf(_neckDecor));
-        elements.Add(ChooseRandomOf(_headDecor));
-        //Debug.Log("Clothes randomized");
-
-        return elements;
-    }
-
-    private GameObject ChooseRandomOf(List<GameObject> elementsToChoose)
-    {
-        if (elementsToChoose == null || elementsToChoose.Count == 0) return null;
-
-        return elementsToChoose[UnityEngine.Random.Range(0, elementsToChoose.Count)];
-    }
 }

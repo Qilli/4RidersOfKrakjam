@@ -92,6 +92,6 @@ public class MainGameManager : MonoBehaviour
     private void DisplaySummary()
     {
         // Disable other elements
-        _summaryDisplayer.DisplaySummary(_caughtPersons);
+        _summaryDisplayer.DisplaySummary(_caughtPersons, _spawnedPrisoners, _caughtPrisoners, _caughtCivilians);
     }
 }
