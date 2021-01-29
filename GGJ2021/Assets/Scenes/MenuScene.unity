@@ -176,8 +176,8 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 758688295}
-        m_MethodName: StartGameHandler
+      - m_Target: {fileID: 11400000, guid: e6be5c4030253a748b9207f22e574807, type: 2}
+        m_MethodName: LoadGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -521,7 +521,7 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 758688295}
+      - m_Target: {fileID: 11400000, guid: e6be5c4030253a748b9207f22e574807, type: 2}
         m_MethodName: QuitApplication
         m_Mode: 1
         m_Arguments:

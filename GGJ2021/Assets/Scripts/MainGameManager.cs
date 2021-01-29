@@ -12,12 +12,13 @@ public class MainGameManager : MonoBehaviour
     // Win conditions -> Catch all prisoners
     // Fail condtions -> Prisoners escaped / Last transport left / Too many civilians caught?\
     [SerializeField] int _civiliansCaughtThreshold = 5;
+    [SerializeField] GameSummaryDisplayer _summaryDisplayer = null;
 
     [Header("Runtime values")]
     [SerializeField] int _spawnedPrisoners = 0;
     [SerializeField] int _caughtPrisoners = 0;
     [SerializeField] int _caughtCivilians = 0;
-    [SerializeField] List<Person> caughtPerson = new List<Person>();
+    [SerializeField] List<Person> _caughtPersons = new List<Person>();
 
     [Header("UI Elements")]
     [SerializeField] Text _prisonersToCatchText = null;
@@ -39,7 +40,7 @@ public class MainGameManager : MonoBehaviour
             _caughtCivilians++;
         }
 
-        caughtPerson.Add(person);
+        _caughtPersons.Add(person);
     }
 
     private void Update()
@@ -65,6 +66,6 @@ public class MainGameManager : MonoBehaviour
     {
         // Disable other elements
         Debug.Log("should display summary");
-        // Enable and feed summary screen
+        _summaryDisplayer.DisplaySummary(_caughtPersons);
     }
 }
