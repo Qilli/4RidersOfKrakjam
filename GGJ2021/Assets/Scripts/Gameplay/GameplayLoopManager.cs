@@ -17,9 +17,7 @@ public class GameplayLoopManager : MonoBehaviour
         Debug.Log(LoseEvent);
         LoseEvent.Register(LoseGame);
         WinEvent.Register(WinGame);
-    }
-
-  
+    }  
 
     public void LoseGame()
     {

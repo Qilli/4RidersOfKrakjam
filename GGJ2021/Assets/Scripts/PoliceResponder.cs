@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles the situation when we select a person for being caught.
+/// </summary>
 public class PoliceResponder : MonoBehaviour
 {
     public void CatchThatGuy(Person person)

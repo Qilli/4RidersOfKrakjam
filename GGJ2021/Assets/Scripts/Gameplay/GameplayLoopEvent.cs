@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName ="Gameplay/GameplayLoopEvent")]
 public class GameplayLoopEvent : ScriptableObject
 {
-    UnityEvent desiredEvent;
+    [SerializeField] UnityEvent desiredEvent;
     /// <summary>
     /// Pole odpowiadające za wywoływanie eventu
     /// </summary>
@@ -22,12 +22,12 @@ public class GameplayLoopEvent : ScriptableObject
 
     public void Register(UnityAction action )
     {
-        desiredEvent.AddListener(action);
+        desiredEvent?.AddListener(action);
     }
 
     public void UnRegister(UnityAction action)
     {
-        desiredEvent.RemoveListener(action);
+        desiredEvent?.RemoveListener(action);
     }
 
 }
