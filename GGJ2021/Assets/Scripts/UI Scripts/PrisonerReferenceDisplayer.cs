@@ -13,6 +13,7 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
     {
         foreach(var r in references)
         {
+            Debug.Log("Creatng buttons for references: " + r.name);
             var newButton = Instantiate(_buttonPrefab, this.transform);
             newButton.Init(r, _detailsPanel);
             _buttonsSpawned.Add(newButton);

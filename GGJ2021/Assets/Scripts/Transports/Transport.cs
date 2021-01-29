@@ -9,9 +9,11 @@ public class Transport : MonoBehaviour
     [SerializeField] protected Transform _placeToArrive = null;
     [SerializeField] protected Transform _placeToDepart = null;
 
+    [Header("Params")]
     [SerializeField] float _speed = 1.0f;
     [SerializeField] float _departureDelay = 5.0f;
     [SerializeField] MainGameManager _gameManager = null;
+    [SerializeField] PositionType.PositionsType _type;
 
     [Header("Runtime")]
     [SerializeField] List<Person> _passengersOnBoard = new List<Person>();
@@ -38,8 +40,6 @@ public class Transport : MonoBehaviour
         this.transform.position = _placeToSpawn.position;
 
         this.enabled = true;
-        
-        // Notify persons transport is arriving
     }
 
     public virtual void Depart()
@@ -70,11 +70,16 @@ public class Transport : MonoBehaviour
 
             if(this.transform.position == _placeToArrive.position)
             {
-                Debug.Log("Transport Arrived at destination!");
                 _isArrived = true;
 
                 Invoke(nameof(Depart), _departureDelay);
-                // Notify passengers we arrived
+
+                var persons = FindObjectsOfType<Person>();
+
+                foreach (var p in persons)
+                {
+                    p.TransportHasArrived(_type);
+                }
             }
         }
     }
