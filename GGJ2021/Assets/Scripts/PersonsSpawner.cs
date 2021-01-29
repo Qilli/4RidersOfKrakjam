@@ -13,7 +13,7 @@ public class PersonsSpawner : MonoBehaviour
     [SerializeField] Vector2Int _prisonersMinMax = new Vector2Int(3, 3);
 
     [Header("Spawnpoints")]
-    [SerializeField] List<Transform> _spawnPoints = new List<Transform>();
+    [SerializeField] List<PositionType> _spawnPoints = new List<PositionType>();
 
     [Header("Persons Elements")]
     [SerializeField] List<PrisonerReference> _prisonerReferences = new List<PrisonerReference>();
@@ -42,6 +42,7 @@ public class PersonsSpawner : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         RandomizePersonsAmounts();
         ChooseRandomReferences();
         NotifyOthers();
@@ -86,11 +87,12 @@ public class PersonsSpawner : MonoBehaviour
         for(int i = 0; i < _civiliansAmount; i++)
         {
             var posToSpawn = ChooseRandomSpawnPoint();
-            var newCivilian = Instantiate(_basicPersonPrefab, posToSpawn, Quaternion.identity, _civiliansParent) as Person;
+            var newCivilian = Instantiate(_basicPersonPrefab, posToSpawn.transform.position, Quaternion.identity, _civiliansParent) as Person;
            
             newCivilian.transform.SetParent(_civiliansParent);
             newCivilian.gameObject.name = "Civilian " + i;
             newCivilian.SetConfirmator(_confirmator);
+            newCivilian.SetPositionType(posToSpawn.Type);
             _civilians.Add(newCivilian);
             _randomizer.RandomizePerson(newCivilian);
         }
@@ -101,10 +103,11 @@ public class PersonsSpawner : MonoBehaviour
         for (int i = 0; i < _prisonersAmount; i++)
         {
             var posToSpawn = ChooseRandomSpawnPoint();
-            var newPrisoner = Instantiate(_basicPersonPrefab, posToSpawn, Quaternion.identity, _prisonersParent) as Person;
+            var newPrisoner = Instantiate(_basicPersonPrefab, posToSpawn.transform.position, Quaternion.identity, _prisonersParent) as Person;
             newPrisoner.transform.SetParent(_prisonersParent);
             newPrisoner.gameObject.name = "Prisoner " + i;
             newPrisoner.SetConfirmator(_confirmator);
+            newPrisoner.SetPositionType(posToSpawn.Type);
             _prisoners.Add(newPrisoner);
 
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
@@ -127,9 +130,9 @@ public class PersonsSpawner : MonoBehaviour
         return newAttributes;
     }
 
-    private Vector3 ChooseRandomSpawnPoint()
+    private PositionType ChooseRandomSpawnPoint()
     {
         var randomSpawnPos = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
-        return randomSpawnPos.position;
+        return randomSpawnPos;
     }
 }

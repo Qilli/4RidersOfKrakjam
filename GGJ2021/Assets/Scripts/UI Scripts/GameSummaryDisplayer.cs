@@ -38,6 +38,7 @@ public class GameSummaryDisplayer : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
+        Time.timeScale = 0;
         // Display portraits and effects of given persons
 
 
@@ -45,17 +46,20 @@ public class GameSummaryDisplayer : MonoBehaviour
         _civiliansCaughtText.text = caughtCivilians.ToString();
         float efficiency = ((float)caughtPrisoners * 100.0f) / (float)(spawnedPrisoners + caughtCivilians);
         _efficiencyText.text = efficiency.ToString("F") + "%";
-        _opinionText.text = GetOpinion();
+        _opinionText.text = GetOpinionFor(efficiency);
     }
 
-    private string GetOpinion()
+    private string GetOpinionFor(float efficiency)
     {
-        Opinion highestFound = new Opinion("NONE", 0);
+        Opinion highestFound = new Opinion("NONE", -1);
 
         // Find the highest matching opinion to display
         foreach(var o in _opinions)
         {
-
+            if(o.FromEffi >= highestFound.FromEffi && o.FromEffi < efficiency)
+            {
+                highestFound = o;
+            }
         }
 
         return highestFound.OpinionText;
