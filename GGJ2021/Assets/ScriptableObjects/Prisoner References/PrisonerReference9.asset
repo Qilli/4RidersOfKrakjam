@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdb7a1b32e1a6b4487b0b89a1d2c31c, type: 3}
   m_Name: PrisonerReference9
   m_EditorClassIdentifier: 
-  _prisonerElements:
-  - {fileID: 820022489689901956, guid: 4894dfe935958b94182fcb44db2c7d2e, type: 3}
-  - {fileID: 1726391565491141332, guid: 981d3132a01d8254c880cb4a50034686, type: 3}
-  - {fileID: 5313309398965178266, guid: 527422504f1fede408a2c244dab7874d, type: 3}
-  - {fileID: 1701984177056707252, guid: c8f103f13511d0f42a5394f6c01b98f7, type: 3}
+  _prisonerElements: []
