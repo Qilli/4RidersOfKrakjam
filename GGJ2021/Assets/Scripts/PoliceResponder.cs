@@ -5,23 +5,24 @@
 /// </summary>
 public class PoliceResponder : MonoBehaviour
 {
+    [SerializeField] MainGameManager _gameManager = null;
+
     public void CatchThatGuy(Person person)
     {
         if(person.IsPrisoner)
         {
-            // Handle prisoner caught
+            // Deploy some mini game scene, if we succeedd, then the person is caught.
             Debug.Log("Prisoner Caught!");
 
         }
         else
         {
             Debug.Log("Innocent man have a bad day");
-            // Some penalty? Or Game Over?
+            // Just catch that guy?
         }
 
-        // Notify UI or other systems that this person is going to have a bad day
-
-        // Remove this person
+        _gameManager.PersonCaught(person);
+        person.gameObject.SetActive(false);
 
         // Deploy some kind of gravestone
     }
