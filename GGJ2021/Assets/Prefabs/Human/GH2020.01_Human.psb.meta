@@ -94,7 +94,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1195
+      x: 1197
       y: 6101
       width: 327
       height: 327
@@ -111,8 +111,8 @@ ScriptedImporter:
     uvTransform: {x: 438, y: 5686}
   - name: ArmFront_Middle
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.65}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -133,8 +133,8 @@ ScriptedImporter:
     uvTransform: {x: 1006, y: 1749}
   - name: ArmFront_Top
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.65}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -175,7 +175,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 312, y: 1629}
-  - name: Gadget_Hand_Knife
+  - name: Gadget_Hand_Beer
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -199,8 +199,8 @@ ScriptedImporter:
     uvTransform: {x: -149, y: 5807}
   - name: Gadget_HandFront_SuitCase_Front
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.8241538, y: 0.006921839}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -859,8 +859,8 @@ ScriptedImporter:
     uvTransform: {x: 1324, y: 1572}
   - name: Head_Female
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.1}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -881,8 +881,8 @@ ScriptedImporter:
     uvTransform: {x: -752, y: 5539}
   - name: Head_Male
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.1}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1057,8 +1057,8 @@ ScriptedImporter:
     uvTransform: {x: -791, y: 7481}
   - name: Leg_Front
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.8}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1079,8 +1079,8 @@ ScriptedImporter:
     uvTransform: {x: 15, y: 6354}
   - name: Leg_Back
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.8}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
