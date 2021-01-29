@@ -5,6 +5,7 @@ using UnityEngine;
 public class PrisonerReferenceDisplayer : MonoBehaviour
 {
     [SerializeField] PrisonerReferenceButton _buttonPrefab = null;
+    [SerializeField] ReferenceDetailsPanel _detailsPanel = null;
 
     [SerializeField] List<PrisonerReferenceButton> _buttonsSpawned = new List<PrisonerReferenceButton>();
 
@@ -13,7 +14,7 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
         foreach(var r in references)
         {
             var newButton = Instantiate(_buttonPrefab, this.transform);
-            newButton.SetPrisonerInfo(r);
+            newButton.Init(r, _detailsPanel);
             _buttonsSpawned.Add(newButton);
         }
     }
