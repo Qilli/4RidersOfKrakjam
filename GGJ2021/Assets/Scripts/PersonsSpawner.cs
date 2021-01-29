@@ -21,6 +21,7 @@ public class PersonsSpawner : MonoBehaviour
 
     [Header("Other elements")]
     [SerializeField] PersonsRandomizer _randomizer = null;
+    [SerializeField] PrisonerReferenceDisplayer _referenceDisplayer = null;
 
     [Header("Spawned elements")]
     [SerializeField] List<Person> _civilians = new List<Person>();
@@ -33,9 +34,16 @@ public class PersonsSpawner : MonoBehaviour
     int _civiliansAmount = -1;
     int _prisonersAmount = -1;
 
+    List<PrisonerReference> _chosenReferences = new List<PrisonerReference>();
+
     private void Awake()
     {
         RandomizePersonsAmounts();
+        ChooseRandomReferences();
+    }
+
+    private void Start()
+    {
         SpawnPersons();
     }
 
@@ -49,6 +57,18 @@ public class PersonsSpawner : MonoBehaviour
     {
         SpawnPrisoners();
         SpawnCivilians();
+    }
+
+    private void ChooseRandomReferences()
+    {
+        for(int i = 0; i < _prisonersAmount; i++)
+        {
+            var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
+            _chosenReferences.Add(randomPrisonerReference);
+            _prisonerReferences.Remove(randomPrisonerReference);
+        }
+
+        _referenceDisplayer.CreatePrisonerReferences(_chosenReferences);
     }
 
     void SpawnCivilians()

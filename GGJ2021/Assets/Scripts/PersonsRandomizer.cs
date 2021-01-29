@@ -48,7 +48,7 @@ public class PersonsRandomizer : MonoBehaviour
         elements.Add(ChooseRandomOf(_leftHandTatoo));
         elements.Add(ChooseRandomOf(_rightHandTatoo));
         elements.Add(ChooseRandomOf(_hairAndBeard));
-        Debug.Log("Body randomized");
+        //Debug.Log("Body randomized");
 
         return elements;
     }
@@ -64,7 +64,7 @@ public class PersonsRandomizer : MonoBehaviour
         elements.Add(ChooseRandomOf(_inHandDecors));
         elements.Add(ChooseRandomOf(_neckDecor));
         elements.Add(ChooseRandomOf(_headDecor));
-        Debug.Log("Clothes randomized");
+        //Debug.Log("Clothes randomized");
 
         return elements;
     }
