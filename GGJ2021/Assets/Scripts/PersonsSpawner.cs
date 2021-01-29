@@ -17,6 +17,7 @@ public class PersonsSpawner : MonoBehaviour
 
     [Header("Persons Elements")]
     [SerializeField] List<PrisonerReference> _prisonerReferences = new List<PrisonerReference>();
+    [SerializeField] List<SpecialAttribute> _specialAttributes = new List<SpecialAttribute>(); 
     [SerializeField] Person _basicPersonPrefab = null;
 
     [Header("Other elements")]
@@ -72,7 +73,7 @@ public class PersonsSpawner : MonoBehaviour
 
     private void ChooseRandomReferences()
     {
-        for(int i = 0; i < _prisonersAmount; i++)
+        for(int i = 0; i < _prisonersAmount; i++) // This fucks up our lists -> Fix references
         {
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
             _chosenReferences.Add(randomPrisonerReference);
@@ -108,10 +109,22 @@ public class PersonsSpawner : MonoBehaviour
 
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
             newPrisoner.SetAsPrisoner(randomPrisonerReference);
+            randomPrisonerReference.SetSpecialAttributes(GetRandomAttributes());
             _prisonerReferences.Remove(randomPrisonerReference);
-
             _randomizer.RandomizePerson(newPrisoner);
         }
+    }
+
+    private List<SpecialAttribute> GetRandomAttributes()
+    {
+        List<SpecialAttribute> newAttributes = new List<SpecialAttribute>();
+
+        newAttributes.Add(_specialAttributes[UnityEngine.Random.Range(0, _specialAttributes.Count)]);
+        // Randomize some more but non repeating
+
+        Debug.Log("Adding special attribute: " + newAttributes[0].NameToDisplay);
+
+        return newAttributes;
     }
 
     private Vector3 ChooseRandomSpawnPoint()

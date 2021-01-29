@@ -16,6 +16,7 @@ public class Person : MonoBehaviour
     [SerializeField] GameObject _shirtDecor = null;
     [SerializeField] GameObject _glasses = null;
     [SerializeField] GameObject _inHandDecors = null;
+
     [SerializeField] GameObject _neckDecor = null;
     [SerializeField] GameObject _headDecor = null;
 

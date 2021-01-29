@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference7
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: "Pawe\u0142"
+  _offense: "Defraudacja \u015Brodk\xF3w"
+  _age: 33

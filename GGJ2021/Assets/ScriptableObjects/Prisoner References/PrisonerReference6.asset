@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference6
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: Marcin
+  _offense: "Kradzie\u017C Wungla"
+  _age: 26

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference1
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: Alex
+  _offense: Theft
+  _age: 28

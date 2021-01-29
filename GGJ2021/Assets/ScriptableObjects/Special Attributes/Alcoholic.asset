@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfdb7a1b32e1a6b4487b0b89a1d2c31c, type: 3}
-  m_Name: PrisonerReference10
+  m_Script: {fileID: 11500000, guid: 23fa2234d1054ec468b8ae3af7a990e2, type: 3}
+  m_Name: Alcoholic
   m_EditorClassIdentifier: 
-  _prisonerElements: []
+  _nameToDisplay: Alcoholic

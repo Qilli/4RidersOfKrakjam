@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference3
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: John Doe
+  _offense: Burglary
+  _age: 49

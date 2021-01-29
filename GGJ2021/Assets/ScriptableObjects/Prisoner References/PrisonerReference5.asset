@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference5
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: Kacper
+  _offense: Kretynizm wtorny
+  _age: 24

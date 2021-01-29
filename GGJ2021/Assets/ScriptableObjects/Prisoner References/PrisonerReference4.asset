@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PrisonerReference4
   m_EditorClassIdentifier: 
   _prisonerElements: []
+  _name: Nairorox
+  _offense: Bycie Damianem
+  _age: 22
