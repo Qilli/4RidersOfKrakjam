@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,13 +22,24 @@ public class CameraController : MonoBehaviour
     public CCTVCamera UsedCCTVCamera;
     Camera cam;
 
-
     [SerializeField]
     float cameraMouseMoveOffset = 5f;
+
+    [Header("Audio")]
+    [SerializeField] AudioPlayer _player = null;
+    [SerializeField] AudioClip _zoomInClip = null;
+    [SerializeField] AudioClip _zoomOutClip = null;
+
+    [SerializeField] AudioClip _movingClip = null;
+
+    float _zoomSoundLength = 0;
+    float _zoomSoundTimer = 0;
+    bool _canPlayZoomSound = true;
 
     private void Awake()
     {
         cam = GetComponent<Camera>();
+        _zoomSoundLength = Mathf.Max(_zoomInClip.length, _zoomOutClip.length);
     }
     private void Start()
     {
@@ -35,28 +47,28 @@ public class CameraController : MonoBehaviour
         initCameraMoveSpeed = cameraMoveSpeed;
     }
 
-    public void controlCameraBoundary()
-    {
-
-    }
-
-    public void moveCameraToPosition(int index)
-    {
-
-    }
-
-    public void moveCameraToPosition()
-    {
-
-    }
     public void handleScroll()
     {
-
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
             targetOrtho -= scroll * zoomSpeed;
             targetOrtho = Mathf.Clamp(targetOrtho, minOrtho, maxOrtho);
+
+            if(scroll > 0.0f && _canPlayZoomSound)
+            {
+                _canPlayZoomSound = false;
+                _zoomSoundTimer = 0.0f;
+                PlayZoomInSound();
+            }
+            else
+            if(_canPlayZoomSound)
+            {
+                _canPlayZoomSound = false;
+                _zoomSoundTimer = 0.0f;
+                PlayZoomOutSound();
+            }
+
 
             if (UsedCCTVCamera != null)
                 diffrence = UsedCCTVCamera.transform.position - Camera.main.transform.position;
@@ -65,19 +77,26 @@ public class CameraController : MonoBehaviour
         Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
 
         float cameraSize = Camera.main.orthographicSize;
-        //cameraMoveSpeed = initCameraMoveSpeed * (cameraSize / maxOrtho);
-        /*
-        if (scroll < 0 && cameraSize <= maxOrtho)
-        {
-            moveCamera(diffrence.x * cameraSize / maxOrtho, diffrence.y * cameraSize / maxOrtho);
-        }
-        */
         diffrence = new Vector2(0, 0);
+    }
 
+    private void PlayZoomOutSound()
+    {
+        _player.PlayCameraZoomingSound(_zoomOutClip);
+    }
+
+    private void PlayZoomInSound()
+    {
+        _player.PlayCameraZoomingSound(_zoomInClip);
     }
 
     public void moveCamera(float x, float y)
     {
+        if(!Mathf.Approximately(x, 0.0f) || !Mathf.Approximately(y, 0.0f))
+        {
+            _player.PlayCameraMovingSound(_movingClip);
+        }
+
         float recalculatedX = cam.transform.position.x + x * Time.deltaTime * cameraMoveSpeed;
         float recalculatedY = cam.transform.position.y + y * Time.deltaTime * cameraMoveSpeed;
 
@@ -90,10 +109,7 @@ public class CameraController : MonoBehaviour
         {
             recalculatedY = cam.transform.position.y;
         }
-
-
         cam.transform.position = new Vector3(recalculatedX, recalculatedY, cam.transform.position.z);
-
     }
 
 
@@ -101,8 +117,6 @@ public class CameraController : MonoBehaviour
     {
         float x = 0;
         float y = 0;
-
-        //Debug.Log(Input.mousePosition);
 
         if (Input.mousePosition.x < cameraMouseMoveOffset)
         {
@@ -154,5 +168,11 @@ public class CameraController : MonoBehaviour
 
         moveCameraOnMouse();
         moveCamera(x, y);
+
+        _zoomSoundTimer += Time.deltaTime;
+        if(_zoomSoundTimer > _zoomSoundLength)
+        {
+            _canPlayZoomSound = true;
+        }
     }
 }
