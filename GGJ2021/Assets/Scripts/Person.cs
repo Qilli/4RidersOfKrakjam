@@ -33,6 +33,9 @@ public class Person : MonoBehaviour
     Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
+
+    public PersonNavigator PersonNavigator;
+    float initScaleX;
     Transport _transport = null;
 
     public void SetAsPrisoner(PrisonerReference reference)
@@ -51,6 +54,20 @@ public class Person : MonoBehaviour
         // Stop navigating
         // Stop listening to transports
         // Go to some weird far away pos
+    }
+
+    public void controlDirection(float x)
+    {
+        float personPosX = gameObject.transform.position.x;
+        Vector3 scale = gameObject.transform.localScale;
+        if (x < personPosX)
+        {
+            gameObject.transform.localScale = new Vector3(-initScaleX, scale.y, scale.z);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(initScaleX, scale.y, scale.z);
+        }
     }
 
     private void SpawnAndParentLookElements(List<GameObject> elements)
@@ -72,6 +89,10 @@ public class Person : MonoBehaviour
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
         _animator = GetComponent<Animator>();
+
+        PersonNavigator = GetComponent<PersonNavigator>();
+        PersonNavigator.p = this;
+        initScaleX = gameObject.transform.localScale.x;
     }
 
     internal void TransportWillAriveSoon(PositionType.PositionsType type)
@@ -169,6 +190,7 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
         Destroy(copy.GetComponent<Animator>());
+        Destroy(copy.GetComponent<PersonNavigator>());
 
         var components = copy.GetComponentsInChildren<BodyPart>();
 

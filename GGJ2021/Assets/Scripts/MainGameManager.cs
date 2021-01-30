@@ -51,6 +51,7 @@ public class MainGameManager : MonoBehaviour
             _caughtCivilians++;
         }
 
+        person.StopWalking();
         _caughtPersons.Add(person);
     }
 

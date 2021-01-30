@@ -5076,15 +5076,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a777575c7ea9dab4682ac59a868066ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPrisoner: 0
   _prisonerReference: {fileID: 0}
   _chanceToEnterTransport: 50
-  _prisonColor: {r: 0, g: 0, b: 0, a: 0}
+  _prisonColor: {r: 1, g: 0.5852457, b: 0, a: 1}
   _personElements: []
   _policeResponder: {fileID: 0}
   _type: 0
   _clickedClip: {fileID: 0}
   HasLuggage: 0
+  _isPrisoner: 0
+  _willTakeTransport: 0
   PersonNavigator: {fileID: 0}
 --- !u!50 &4771956049220955308
 Rigidbody2D:
