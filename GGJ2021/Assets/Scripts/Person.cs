@@ -31,6 +31,9 @@ public class Person : MonoBehaviour
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
 
+    public PersonNavigator PersonNavigator;
+    float initScaleX;
+
     public void SetAsPrisoner(PrisonerReference reference)
     {
         _isPrisoner = true;
@@ -50,12 +53,32 @@ public class Person : MonoBehaviour
 
             _personElements.Add(Instantiate(e, this.transform));
         }
+
     }
+
+    public void controlDirection(float x)
+    {
+        float personPosX = gameObject.transform.position.x;
+        Vector3 scale = gameObject.transform.localScale;
+        if (x < personPosX)
+        {
+            gameObject.transform.localScale = new Vector3(-initScaleX, scale.y, scale.z);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(initScaleX, scale.y, scale.z);
+        }
+    }
+
 
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
         _animator = GetComponent<Animator>();
+        PersonNavigator = GetComponent<PersonNavigator>();
+        PersonNavigator.p = this;
+        initScaleX = gameObject.transform.localScale.x;
+
     }
 
     internal void TransportHasArrived(PositionType.PositionsType type)
@@ -134,6 +157,7 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
+        Destroy(copy.GetComponent<PersonNavigator>());
         Destroy(copy.GetComponent<Animator>());
 
         var components = copy.GetComponentsInChildren<BodyPart>();
