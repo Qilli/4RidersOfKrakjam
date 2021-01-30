@@ -52,9 +52,14 @@ public class MainGameManager : MonoBehaviour
         _caughtPersons.Add(person);
     }
 
-    internal void NotifyPrisonerEscaped(Person p, Transport transport)
+    internal void NotifyPrisonerEscapedWithTransport(Person p, Transport transport)
     {
         Debug.Log("Notified escaped prisoner using: " + transport.name);
+    }
+
+    internal void NotifyPrisonerEscapedPolice(Person person)
+    {
+        Debug.Log("Prsioner escaped from police forces");
     }
 
     private void Update()

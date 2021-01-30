@@ -125,7 +125,7 @@ public class PersonsSpawner : MonoBehaviour
         newAttributes.Add(_specialAttributes[UnityEngine.Random.Range(0, _specialAttributes.Count)]);
         // Randomize some more but non repeating
 
-        Debug.Log("Adding special attribute: " + newAttributes[0].NameToDisplay);
+        //Debug.Log("Adding special attribute: " + newAttributes[0].NameToDisplay);
 
         return newAttributes;
     }

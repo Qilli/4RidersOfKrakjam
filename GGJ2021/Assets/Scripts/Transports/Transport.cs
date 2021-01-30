@@ -50,7 +50,7 @@ public class Transport : MonoBehaviour
         {
             if(p.IsPrisoner)
             {
-                _gameManager.NotifyPrisonerEscaped(p, this);
+                _gameManager.NotifyPrisonerEscapedWithTransport(p, this);
             }
         }
     }
