@@ -45,7 +45,7 @@ public class AudioPlayer : MonoBehaviour
 
     internal void PlayCameraMovingSound(AudioClip movingClip)
     {
-        if (_cameraMovementSource.isPlaying) return;
+        if (_cameraMovementSource.isPlaying && movingClip) return;
 
         _cameraMovementSource.clip = movingClip;
         _cameraMovementSource.Play();
