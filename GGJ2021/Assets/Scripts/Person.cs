@@ -110,4 +110,15 @@ public class Person : MonoBehaviour
     {
         _type = type;
     }
+
+    public GameObject GetPortraitOfPrisoner()
+    {
+        var copy = Instantiate(this.gameObject);
+
+        Destroy(copy.GetComponent<Rigidbody2D>());
+        Destroy(copy.GetComponent<Person>());
+        Destroy(copy.GetComponent<BoxCollider2D>());
+
+        return copy;
+    }
 }

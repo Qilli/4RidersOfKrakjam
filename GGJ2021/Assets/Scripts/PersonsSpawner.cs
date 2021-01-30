@@ -45,19 +45,20 @@ public class PersonsSpawner : MonoBehaviour
         Time.timeScale = 1;
         RandomizePersonsAmounts();
         ChooseRandomReferences();
+        SpawnPersons();
         NotifyOthers();
     }
 
     private void NotifyOthers()
     {
-        _referenceDisplayer.CreatePrisonerReferences(_chosenReferences);
+        _referenceDisplayer.CreatePrisonerReferences(_prisoners);
         _startDisplayer.DisplayStartingPortraits(_chosenReferences);
         _gameManager.SetSpawnedPrisonerAmounts(_prisonersAmount);
     }
 
     private void Start()
     {
-        SpawnPersons();
+        //SpawnPersons();
     }
 
     private void RandomizePersonsAmounts()
