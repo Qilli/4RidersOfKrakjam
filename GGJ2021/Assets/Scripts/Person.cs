@@ -53,7 +53,8 @@ public class Person : MonoBehaviour
     {
         // Stop navigating
         // Stop listening to transports
-        // Go to some weird far away pos
+        PersonNavigator.enabled = false;
+        _animator.SetBool("IsWalking", false);
     }
 
     public void controlDirection(float x)
@@ -162,6 +163,8 @@ public class Person : MonoBehaviour
     public void GetCaught()
     {
         _policeResponder.CatchThatGuy(this);
+
+        StopWalking();
     }
 
     internal void GetBackToStart()
