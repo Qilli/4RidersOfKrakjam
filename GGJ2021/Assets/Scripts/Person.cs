@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public class Person : MonoBehaviour
 {
-    [Header("Prisoner Status")]
-    [SerializeField] bool _isPrisoner = false;
-
     [SerializeField] PrisonerReference _prisonerReference = null;
     [Range(0.0f, 100.0f)]
     [SerializeField] float _chanceToEnterTransport = 50;
@@ -23,16 +20,24 @@ public class Person : MonoBehaviour
     [SerializeField] AudioClip _clickedClip = null;
 
 
+    [Header("Runtime")]
     public bool HasLuggage = false; // Used for settings animator
+    [SerializeField] bool _isPrisoner = false;
+    [SerializeField] bool _willTakeTransport = false;
+
+    public bool IsEscaped { get { return _isEscaped; } }
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
+    bool _isEscaped = false;
+    bool _isCaught = false;
     Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
 
     public PersonNavigator PersonNavigator;
     float initScaleX;
+    Transport _transport = null;
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -45,15 +50,13 @@ public class Person : MonoBehaviour
         SpawnAndParentLookElements(elements);
     }
 
-    private void SpawnAndParentLookElements(List<GameObject> elements)
+    internal void StopWalking()
     {
-        foreach(var e in elements)
-        {
-            if (!e) continue;
 
-            _personElements.Add(Instantiate(e, this.transform));
-        }
-
+        // Stop navigating
+        // Stop listening to transports
+        PersonNavigator.follower.stopPerson();
+        _animator.SetBool("IsWalking", false);
     }
 
     public void controlDirection(float x)
@@ -70,44 +73,76 @@ public class Person : MonoBehaviour
         }
     }
 
+    private void SpawnAndParentLookElements(List<GameObject> elements)
+    {
+        foreach(var e in elements)
+        {
+            if (!e) continue;
+
+            _personElements.Add(Instantiate(e, this.transform));
+        }
+    }
+
+    internal void SetEscapeStatus()
+    {
+        _isEscaped = true;
+    }
 
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
         _animator = GetComponent<Animator>();
+
         PersonNavigator = GetComponent<PersonNavigator>();
         PersonNavigator.p = this;
         initScaleX = gameObject.transform.localScale.x;
-
     }
 
-    internal void TransportHasArrived(PositionType.PositionsType type)
+    internal void TransportWillAriveSoon(PositionType.PositionsType type)
     {
         if (type != _type) return;
 
-        if(!_isPrisoner)
+        if (!_isPrisoner)
         {
             if (UnityEngine.Random.Range(0, 100) < _chanceToEnterTransport)
             {
-                Debug.Log("Boarding transport: " + type);
-                BoardTransport();
-            }
-            else
-            {
-                Debug.Log("Not interested in boarding: " + type);
+                _willTakeTransport = true;
+                GoToPlatform();
             }
         }
         else
+        if(!_isEscaped)
         {
-            Debug.Log("Escaping as a prisoner via: " + type);
+            _willTakeTransport = true;
+            GoToPlatform();
+        }
+    }
+
+
+
+    internal void TransportHasArrived(PositionType.PositionsType type, Transport transport)
+    {
+        if (type != _type) return;
+
+        if(_willTakeTransport && !_isEscaped)
+        {
+            _transport = transport;
             BoardTransport();
         }
     }
 
+    private void GoToPlatform()
+    {
+        // Move into designated position of waiting for transport NEAR it.
+        Debug.Log("Moving to platform");
+    }
+
     private void BoardTransport()
     {
-        // Some logic to navigate us into transport
+        // Some logic to navigate us INSIDE transport
         // Call Board transprot on transport when arrived
+        Debug.Log("Boarding");
+        _transport.BoardTransport(this);
     }
 
     private void Start()
@@ -132,6 +167,8 @@ public class Person : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (_isCaught) return;
+        // Dont allow it, if we are being caught
         var player = FindObjectOfType<AudioPlayer>();
         player.PlayUIClick(_clickedClip);
 
@@ -140,7 +177,10 @@ public class Person : MonoBehaviour
 
     public void GetCaught()
     {
+        _isCaught = true;
         _policeResponder.CatchThatGuy(this);
+
+        StopWalking();
     }
 
     internal void GetBackToStart()
@@ -168,8 +208,8 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
-        Destroy(copy.GetComponent<PersonNavigator>());
         Destroy(copy.GetComponent<Animator>());
+        Destroy(copy.GetComponent<PersonNavigator>());
 
         var components = copy.GetComponentsInChildren<BodyPart>();
 

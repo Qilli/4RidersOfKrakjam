@@ -1121,6 +1121,28 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
+  - name: Gadget_Hand_Baton
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2122
+      y: 2987
+      width: 94
+      height: 540
+    spriteID: 652b117b29cda0e49846a6dfda2c7205
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 174, y: 2345}
   platformSettings: []
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
@@ -1462,6 +1484,13 @@ ScriptedImporter:
     spriteID: 07cf9c8ff1133e14dbfe9b9d9cea3b28
     layerID: 66
     mosaicPosition: {x: 882, y: 6965}
+  - name: Gadget_Hand_Baton
+    spriteName: Gadget_Hand_Baton
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 652b117b29cda0e49846a6dfda2c7205
+    layerID: 82
+    mosaicPosition: {x: 2122, y: 2987}
   - name: Background
     spriteName: Background
     isGroup: 0

@@ -42,6 +42,8 @@ public class PersonsSpawner : MonoBehaviour
 
     private void Awake()
     {
+        _spawnPoints = new List<PositionType>(GameObject.FindObjectsOfType<PositionType>());
+
         Time.timeScale = 1;
         RandomizePersonsAmounts();
         SpawnPersons();

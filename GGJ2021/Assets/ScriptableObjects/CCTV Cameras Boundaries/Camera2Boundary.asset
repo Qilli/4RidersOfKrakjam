@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06597e7d5005a8346980ab48335cf84c, type: 3}
   m_Name: Camera2Boundary
   m_EditorClassIdentifier: 
-  upperLeftBoundary: {x: -6, y: 25}
-  upperRightBoundary: {x: 6, y: 35}
+  upperLeftBoundary: {x: 2, y: -10}
+  upperRightBoundary: {x: 90, y: 28}

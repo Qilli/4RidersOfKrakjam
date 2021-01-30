@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TrainTransport : Transport
 {
-    public override void Arrive()
+    public override void StartArriving()
     {
-        base.Arrive();
+        base.StartArriving();
         Debug.Log("Train arriving!");
     }
 
-    public override void Depart()
+    public override void StartDeparting()
     {
-        base.Depart();
+        base.StartDeparting();
     }
 }

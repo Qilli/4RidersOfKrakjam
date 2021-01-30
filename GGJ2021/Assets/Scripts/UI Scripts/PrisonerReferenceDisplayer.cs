@@ -43,4 +43,12 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
             b.MarkAsCaught(caughtPrisoner);
         }
     }
+
+    public void MarkAsEscaped(Person escapedPrisoner)
+    {
+        foreach(var b in _buttonsSpawned)
+        {
+            b.MarkAsEscaped(escapedPrisoner);
+        }
+    }
 }

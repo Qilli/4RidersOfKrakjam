@@ -85,7 +85,15 @@ public class Node : MonoBehaviour
 
     public Node getRandomConnectedNode()
     {
-        return m_Connections[Random.Range(0, m_Connections.Count)];
+        try
+        {
+            return m_Connections[Random.Range(0, m_Connections.Count)];
+        }
+        catch
+        {
+            Debug.LogError("Fucked up on node: " + this.gameObject.name);
+            return null;
+        }
     }
 
     private void OnDrawGizmos()

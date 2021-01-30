@@ -15,12 +15,17 @@ public class PoliceMan : MonoBehaviour
 
     [SerializeField] float _animRunSpeed = 2.0f;
 
+    [SerializeField] AudioPlayer _player = null;
+    [SerializeField] AudioClip _impactClip = null;
+
     public bool IsAlive { get => _isAlive; }
 
     public void Die()
     {
         _isAlive = false;
         // Play some death effects!
+
+        _player.PlayUIClick(_impactClip);
 
         var animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsWalking", false);
