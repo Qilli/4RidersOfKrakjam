@@ -22,7 +22,21 @@ public class Person : MonoBehaviour
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
     public PersonNavigator PersonNavigator;
+    float initScaleX;
 
+    public void controlDirection(float x)
+    {
+        float personPosX = gameObject.transform.position.x;
+        Vector3 scale = gameObject.transform.localScale;
+        if(x < personPosX)
+        {
+            gameObject.transform.localScale = new Vector3(-initScaleX, scale.y, scale.z);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(initScaleX, scale.y, scale.z);
+        }
+    }
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -49,6 +63,8 @@ public class Person : MonoBehaviour
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
         PersonNavigator = GetComponent<PersonNavigator>();
+        PersonNavigator.p = this;
+        initScaleX = gameObject.transform.localScale.x;
     }
 
     internal void TransportHasArrived(PositionType.PositionsType type)

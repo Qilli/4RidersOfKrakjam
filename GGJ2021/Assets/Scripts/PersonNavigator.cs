@@ -11,9 +11,13 @@ public class PersonNavigator : MonoBehaviour
     public Follower follower;
     [SerializeField]
     Node currentNode;
+    public Person p;
+
+
 
     public bool gameplayPerson = false;
 
+    float waitTimeInNextPoint = 0f;
     float timer = 0f;
 
     private void Awake()
@@ -36,6 +40,8 @@ public class PersonNavigator : MonoBehaviour
             return;
         }
 
+        //currentNode.type.onExit(p);
+        waitTimeInNextPoint = destination.type.GetTimeWait();
         follower.destinationChanged(currentNode, destination);
     }
 
@@ -48,9 +54,18 @@ public class PersonNavigator : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (!didOnce)
         {
             setDestination(currentNode[1]);
+            didOnce = true;
+        }
+
+        */
+
+        if(currentNode != null && !didOnce)
+        {
+            setDestination(currentNode.getRandomConnectedNode());
             didOnce = true;
         }
 
@@ -59,10 +74,10 @@ public class PersonNavigator : MonoBehaviour
             currentNode = follower.lastNode;
         }
         
-        if(follower.ended && currentNode.waitTime > 0)
+        if(follower.ended)
         {
             timer += Time.deltaTime;
-            if(timer < currentNode.waitTime)
+            if(timer < waitTimeInNextPoint)
                 return;
         }
 
@@ -77,6 +92,12 @@ public class PersonNavigator : MonoBehaviour
                 timer = 0;
             }
 
+        }
+
+
+        if(currentNode == follower.lastNode)
+        {
+           // currentNode.type.onEnter(p);
         }
         //Debug.Log(currentNode.connections.Count);
     }

@@ -24,6 +24,7 @@ public class Node : MonoBehaviour
         Exit,
     }
     public float waitTime = 0f;
+    public PointType type;
 
     /// <summary>
     /// Gets the connections (neighbors).
@@ -51,6 +52,11 @@ public class Node : MonoBehaviour
         {
             n.connections.Add(this);
         }
+    }
+
+    public Node getRandomConnectedNode()
+    {
+        return m_Connections[Random.Range(0, m_Connections.Count)];
     }
 
     private void OnDrawGizmos()

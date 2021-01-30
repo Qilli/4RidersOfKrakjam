@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Connections: []
   waitTime: 0
+  type: {fileID: 0}
 --- !u!1 &146480540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,6 +2019,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 695809403}
   waitTime: 0
+  type: {fileID: 0}
 --- !u!1 &363190884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2432,7 @@ MonoBehaviour:
   - {fileID: 695809403}
   - {fileID: 144807385}
   waitTime: 0
+  type: {fileID: 0}
 --- !u!1 &462378833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Nodes: []
+  basePoint: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!23 &474794886
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3098,6 +3102,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 1287357871}
   waitTime: 0
+  type: {fileID: 0}
 --- !u!4 &695809404
 Transform:
   m_ObjectHideFlags: 0
@@ -3574,6 +3579,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 695809403}
   waitTime: 0
+  type: {fileID: 0}
 --- !u!1 &746947703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,6 +6410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Connections: []
   waitTime: 0
+  type: {fileID: 0}
 --- !u!212 &1287357872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8708,6 +8715,7 @@ MonoBehaviour:
   - {fileID: 695809403}
   - {fileID: 144807385}
   waitTime: 0
+  type: {fileID: 0}
 --- !u!114 &1927434378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10276,6 +10284,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 831032433104266307}
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032431928455659
 Transform:
   m_ObjectHideFlags: 0
@@ -10337,6 +10346,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 831032433104266307}
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432303607290
 Transform:
   m_ObjectHideFlags: 0
@@ -10383,6 +10393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Connections: []
   waitTime: 3
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432338329334
 Transform:
   m_ObjectHideFlags: 0
@@ -10463,6 +10474,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 831032433287391497}
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432618162974
 Transform:
   m_ObjectHideFlags: 0
@@ -10511,6 +10523,7 @@ MonoBehaviour:
   - {fileID: 831032432303607292}
   - {fileID: 831032432677770973}
   waitTime: 4
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432638317100
 Transform:
   m_ObjectHideFlags: 0
@@ -10598,6 +10611,7 @@ MonoBehaviour:
   m_Connections:
   - {fileID: 831032432303607292}
   waitTime: 2
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432677770975
 Transform:
   m_ObjectHideFlags: 0
@@ -10678,6 +10692,7 @@ MonoBehaviour:
   - {fileID: 831032432499199871}
   - {fileID: 831032433287391497}
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032432966684887
 Transform:
   m_ObjectHideFlags: 0
@@ -10724,6 +10739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Connections: []
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032433104266317
 Transform:
   m_ObjectHideFlags: 0
@@ -10852,6 +10868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Connections: []
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032433287391499
 Transform:
   m_ObjectHideFlags: 0
@@ -10931,6 +10948,7 @@ MonoBehaviour:
   - {fileID: 831032432303607292}
   - {fileID: 831032432618162976}
   waitTime: 5
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!4 &831032433518145955
 Transform:
   m_ObjectHideFlags: 0
@@ -11067,6 +11085,7 @@ MonoBehaviour:
   - {fileID: 831032431928455657}
   - {fileID: 831032433104266307}
   waitTime: 0
+  type: {fileID: 11400000, guid: 60695195cf7fcb34599fe90911db3a58, type: 2}
 --- !u!1 &5125724853567833858
 GameObject:
   m_ObjectHideFlags: 0

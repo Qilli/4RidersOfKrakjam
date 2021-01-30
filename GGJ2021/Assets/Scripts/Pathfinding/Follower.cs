@@ -23,17 +23,19 @@ public class Follower : MonoBehaviour
 
 	public Node lastNode = null;
 
+	Person p = null;
+
 	void Start ()
 	{
 		//m_Path = m_Graph.GetShortestPath ( m_Start, m_End );
 		//Follow ( m_Path );
-
 		
 	}
 
     private void Awake()
     {
 		m_Graph = FindObjectOfType<Graph>();
+		p = GetComponent<Person>();
 	}
 
 
@@ -72,15 +74,19 @@ public class Follower : MonoBehaviour
 		var e = m_Path.nodes.GetEnumerator ();
 		while ( e.MoveNext () )
 		{
+			if (m_Current != null)
+				m_Current.type.onExit(p);
 			m_Current = e.Current;
+			m_Current.type.onEnter(p);
 			lastNode = e.Current;
-
+			p.controlDirection(m_Current.transform.position.x);
 			// Wait until we reach the current target node and then go to next node
 			yield return new WaitUntil ( () =>
 			{
 				return transform.position == m_Current.transform.position;
 			} );
 		}
+		m_End.type.onFinished(p);
 		ended = true;
 		m_Current = null;
 		#if UNITY_EDITOR

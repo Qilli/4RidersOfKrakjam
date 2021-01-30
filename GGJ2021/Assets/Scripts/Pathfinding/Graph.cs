@@ -15,6 +15,8 @@ public class Graph : MonoBehaviour
 	/// </summary>
 	[SerializeField]
 	protected List<Node> m_Nodes = new List<Node> ();
+	[SerializeField]
+	PointType basePoint;
 
 	/// <summary>
 	/// Gets the nodes.
@@ -32,15 +34,26 @@ public class Graph : MonoBehaviour
     {
 		m_Nodes = new List<Node>(GameObject.FindObjectsOfType<Node>());
 	}
+    private void Start()
+    {
+        for(int i = 0; i < m_Nodes.Count; i += 1)
+        {
+			if(m_Nodes[i].type == null)
+            {
+				m_Nodes[i].type = basePoint;
+
+			}
+        }
+    }
 
 
-	/// <summary>
-	/// Gets the shortest path from the starting Node to the ending Node.
-	/// </summary>
-	/// <returns>The shortest path.</returns>
-	/// <param name="start">Start Node.</param>
-	/// <param name="end">End Node.</param>
-	public virtual Path GetShortestPath ( Node start, Node end )
+    /// <summary>
+    /// Gets the shortest path from the starting Node to the ending Node.
+    /// </summary>
+    /// <returns>The shortest path.</returns>
+    /// <param name="start">Start Node.</param>
+    /// <param name="end">End Node.</param>
+    public virtual Path GetShortestPath ( Node start, Node end )
 	{
 		
 		// We don't accept null arguments

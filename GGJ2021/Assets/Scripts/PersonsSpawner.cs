@@ -95,7 +95,7 @@ public class PersonsSpawner : MonoBehaviour
             newCivilian.SetConfirmator(_confirmator);
             newCivilian.SetPositionType(posToSpawn.Type);
             newCivilian.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
-            newCivilian.PersonNavigator.setDestination(posToSpawn.NodeUsed.connections[0]);
+            newCivilian.PersonNavigator.setDestination(posToSpawn.NodeUsed.getRandomConnectedNode());
             _civilians.Add(newCivilian);
             _randomizer.RandomizePerson(newCivilian);
         }
@@ -113,8 +113,9 @@ public class PersonsSpawner : MonoBehaviour
             newPrisoner.SetPositionType(posToSpawn.Type);
 
             newPrisoner.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
+
             if(posToSpawn.NodeUsed.connections.Count > 0){
-                newPrisoner.PersonNavigator.setDestination(posToSpawn.NodeUsed.connections[0]);
+                newPrisoner.PersonNavigator.setDestination(posToSpawn.NodeUsed.getRandomConnectedNode());
             }
             else
             {
