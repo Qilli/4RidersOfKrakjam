@@ -140,7 +140,7 @@ MonoBehaviour:
   _reference: {fileID: 0}
   _portraitParent: {fileID: 1894414615070576450}
   _crossout: {fileID: 598261253094243122}
-  _escapedLabel: {fileID: 0}
+  _escapedLabel: {fileID: 3988249149986369256}
   _prisoner: {fileID: 0}
 --- !u!114 &781504745977478275
 MonoBehaviour:
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f18d10b52bd51ef479b4f9aca719e306, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21ed90dca9de94a4f996c3fc3711117e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 0
