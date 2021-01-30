@@ -64,6 +64,7 @@ public class Node : MonoBehaviour
 
         for(int i = 0; i < connections.Count; i += 1)
         {
+            Debug.Log(connections[i].type);
             if(connections[i].type.TypeOfPoint != PointType.Type.POI || connections[i].personsQueued.Count < connections[i].type.maxPersons)
             {
                 availableNodes.Add(connections[i]);
