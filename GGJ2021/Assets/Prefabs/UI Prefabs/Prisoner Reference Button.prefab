@@ -200,7 +200,7 @@ MonoBehaviour:
         m_MethodName: PlayClickSound
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: b3c8de69285a8834daeb0b33cbe51b8b,
+          m_ObjectArgument: {fileID: 8300000, guid: 4eed03d78d0d1a24899f55a26cc801c2,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
