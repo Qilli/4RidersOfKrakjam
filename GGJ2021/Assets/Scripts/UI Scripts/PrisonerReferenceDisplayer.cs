@@ -12,29 +12,35 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
     [SerializeField] float _camYOffset = -1.0f;
 
     [SerializeField] List<PrisonerReferenceButton> _buttonsSpawned = new List<PrisonerReferenceButton>();
+    [SerializeField] AudioPlayer _player = null;
 
     public void CreatePrisonerReferences(List<Person> prisoners)
     {
-        Debug.Log("Creating prisoner references: " + prisoners.Count);
-
         int iterator = 0;
 
         foreach(var prisoner in prisoners)
         {
             var portrait = prisoner.GetPortraitOfPrisoner();
 
-            portrait.transform.SetParent(this.transform);
+            portrait.transform.SetParent(null);
 
             var renderCam = _renderCams[iterator];
             iterator++;
 
             portrait.transform.position = new Vector3(renderCam.transform.position.x, renderCam.transform.position.y + _camYOffset, 0);
-            // Move portrait to button
 
             var newButton = Instantiate(_buttonPrefab, this.transform);
-            newButton.Init(prisoner.PrisonerReference, _detailsPanel);
+            newButton.Init(prisoner.PrisonerReference, _detailsPanel, renderCam, prisoner, _player);
             newButton.GetComponent<RawImage>().texture = renderCam.targetTexture;
             _buttonsSpawned.Add(newButton);
+        }
+    }
+
+    public void MarkPersonAsCaught(Person caughtPrisoner)
+    {
+        foreach(var b in _buttonsSpawned)
+        {
+            b.MarkAsCaught(caughtPrisoner);
         }
     }
 }

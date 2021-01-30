@@ -92,6 +92,7 @@ public class PersonsRandomizer : MonoBehaviour
 
             if (bp.Type == BodyPart.BodyPartType.Luggage && useLuggage)
             {
+                person.HasLuggage = true;
                 bp.gameObject.SetActive(true);
             }
 

@@ -10,32 +10,42 @@ public class PrisonerReferenceButton : MonoBehaviour
 {
     [SerializeField] PrisonerReference _reference = null;
     [SerializeField] Transform _portraitParent = null;
+    [SerializeField] GameObject _crossout = null;
+
+    [Header("Runtime")]
+    [SerializeField] Person _prisoner = null;
+
+    Camera _renderCam = null;
+    AudioPlayer _player = null;
 
     public PrisonerReference Reference { get { return _reference; } }
 
     ReferenceDetailsPanel _detailsPanel = null;
 
-    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel)
+    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel, Camera renderCam, Person prisoner, AudioPlayer player)
     {
         _detailsPanel = detailsPanel;
         _reference = reference;
-        CreatePrisonerPortrait();
+        _renderCam = renderCam;
+        _prisoner = prisoner;
+        _player = player;
     }
 
     public void DisplayDetails()
     {
-        Debug.Log("Displaying details of: " + _reference.name);
-        _detailsPanel.DisplayDetailsOfReference(_reference);
+        _detailsPanel.DisplayDetailsOfReference(_reference, _renderCam);
     }
 
-    private void CreatePrisonerPortrait()
+    internal void MarkAsCaught(Person caughtPrisoner)
     {
-        // Create new child GO
-        foreach(var e in _reference.GetPrisonerElements())
+        if(caughtPrisoner == _prisoner)
         {
-            Instantiate(e, _portraitParent);
+            _crossout.SetActive(true);
         }
+    }
 
-        // Spawn prion uniform element OR spawn last seen elements
+    public void PlayClickSound(AudioClip clip)
+    {
+        _player.PlayUIClick(clip);
     }
 }

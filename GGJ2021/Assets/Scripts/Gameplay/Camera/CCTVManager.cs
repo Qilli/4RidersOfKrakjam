@@ -15,6 +15,8 @@ public class CCTVManager : MonoBehaviour
 
     public List<CCTVCamera> cameras = new List<CCTVCamera>();
 
+    [SerializeField] AudioPlayer _audioPlayer = null;
+
     CCTVCamera _lastCamera;
 
     private void Awake()
@@ -26,6 +28,8 @@ public class CCTVManager : MonoBehaviour
     {
         gameCamera.transform.position = cameras[index].transform.position;
         gameCamera.UsedCCTVCamera = cameras[index];
+
+        _audioPlayer.PlayAmbientSound(cameras[index].CameraAudioClip);
     }
 
     public void moveGameCameraTo(CCTVCamera cam)

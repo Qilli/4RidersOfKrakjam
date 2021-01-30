@@ -38,13 +38,12 @@ public class PersonsSpawner : MonoBehaviour
     int _civiliansAmount = -1;
     int _prisonersAmount = -1;
 
-    List<PrisonerReference> _chosenReferences = new List<PrisonerReference>();
+    List<PrisonerReference> _usedReferences = new List<PrisonerReference>();
 
     private void Awake()
     {
         Time.timeScale = 1;
         RandomizePersonsAmounts();
-        ChooseRandomReferences();
         SpawnPersons();
         NotifyOthers();
     }
@@ -52,13 +51,8 @@ public class PersonsSpawner : MonoBehaviour
     private void NotifyOthers()
     {
         _referenceDisplayer.CreatePrisonerReferences(_prisoners);
-        _startDisplayer.DisplayStartingPortraits(_chosenReferences);
+        _startDisplayer.DisplayStartingPortraits(_prisoners);
         _gameManager.SetSpawnedPrisonerAmounts(_prisonersAmount);
-    }
-
-    private void Start()
-    {
-        //SpawnPersons();
     }
 
     private void RandomizePersonsAmounts()
@@ -71,16 +65,6 @@ public class PersonsSpawner : MonoBehaviour
     {
         SpawnPrisoners();
         SpawnCivilians();
-    }
-
-    private void ChooseRandomReferences()
-    {
-        for(int i = 0; i < _prisonersAmount; i++) // This fucks up our lists -> Fix references
-        {
-            var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
-            _chosenReferences.Add(randomPrisonerReference);
-            _prisonerReferences.Remove(randomPrisonerReference);
-        }
     }
 
     void SpawnCivilians()
@@ -126,7 +110,7 @@ public class PersonsSpawner : MonoBehaviour
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
             newPrisoner.SetAsPrisoner(randomPrisonerReference);
             randomPrisonerReference.SetSpecialAttributes(GetRandomAttributes());
-            _prisonerReferences.Remove(randomPrisonerReference);
+            _prisonerReferences.Remove(randomPrisonerReference); // This fucks our randomization
             _randomizer.RandomizePerson(newPrisoner);
         }
     }

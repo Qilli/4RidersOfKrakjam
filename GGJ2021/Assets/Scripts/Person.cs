@@ -1,42 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Person : MonoBehaviour
 {
     [Header("Prisoner Status")]
     [SerializeField] bool _isPrisoner = false;
+
     [SerializeField] PrisonerReference _prisonerReference = null;
     [Range(0.0f, 100.0f)]
     [SerializeField] float _chanceToEnterTransport = 50;
 
+    [SerializeField] Color _prisonColor;
+
     [SerializeField] List<GameObject> _personElements = new List<GameObject>();
 
     [Header("Other")]
-    [SerializeField] PoliceResponder _policeResponder = null; // Maybe inject this
+    [SerializeField] PoliceResponder _policeResponder = null;
     [SerializeField] PositionType.PositionsType _type;
 
+    [SerializeField] AudioClip _clickedClip = null;
+
+
+    public bool HasLuggage = false; // Used for settings animator
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
+    Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
-    public PersonNavigator PersonNavigator;
-    float initScaleX;
-
-    public void controlDirection(float x)
-    {
-        float personPosX = gameObject.transform.position.x;
-        Vector3 scale = gameObject.transform.localScale;
-        if(x < personPosX)
-        {
-            gameObject.transform.localScale = new Vector3(-initScaleX, scale.y, scale.z);
-        }
-        else
-        {
-            gameObject.transform.localScale = new Vector3(initScaleX, scale.y, scale.z);
-        }
-    }
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -62,9 +55,7 @@ public class Person : MonoBehaviour
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
-        PersonNavigator = GetComponent<PersonNavigator>();
-        PersonNavigator.p = this;
-        initScaleX = gameObject.transform.localScale.x;
+        _animator = GetComponent<Animator>();
     }
 
     internal void TransportHasArrived(PositionType.PositionsType type)
@@ -99,10 +90,17 @@ public class Person : MonoBehaviour
     private void Start()
     {
         _startingPosition = this.transform.position;
+
+        if (HasLuggage)
+            _animator.SetBool("HasSuitcase", true);
+
     }
 
     private void OnMouseDown()
     {
+        var player = FindObjectOfType<AudioPlayer>();
+        player.PlayUIClick(_clickedClip);
+
         _confirmator.DisplayConfirmationPrompt(this);
     }
 
@@ -136,7 +134,24 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
-        Destroy(copy.GetComponent<PersonNavigator>());
+        Destroy(copy.GetComponent<Animator>());
+
+        var components = copy.GetComponentsInChildren<BodyPart>();
+
+        foreach(var bp in components)
+        {
+            if(bp.Type == BodyPart.BodyPartType.Luggage || bp.Type == BodyPart.BodyPartType.Backpack || bp.Type == BodyPart.BodyPartType.ShirtDecor)
+            {
+                bp.gameObject.SetActive(false);
+            }
+
+            if(bp.Type == BodyPart.BodyPartType.Shirt || bp.Type == BodyPart.BodyPartType.Trousers)
+            {
+                bp.GetComponent<SpriteRenderer>().color = _prisonColor;
+            }
+        }
+
+        // Recolor person to prison color (orange)
 
         return copy;
     }
