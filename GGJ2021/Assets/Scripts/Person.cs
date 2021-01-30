@@ -23,13 +23,16 @@ public class Person : MonoBehaviour
     [SerializeField] AudioClip _clickedClip = null;
 
 
+    [Header("Runtime")]
     public bool HasLuggage = false; // Used for settings animator
+    [SerializeField] bool _willTakeTransport = false;
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
     Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
+    Transport _transport = null;
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -58,33 +61,48 @@ public class Person : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    internal void TransportHasArrived(PositionType.PositionsType type)
+    internal void TransportWillAriveSoon(PositionType.PositionsType type)
     {
         if (type != _type) return;
 
-        if(!_isPrisoner)
+        if (!_isPrisoner)
         {
             if (UnityEngine.Random.Range(0, 100) < _chanceToEnterTransport)
             {
-                Debug.Log("Boarding transport: " + type);
-                BoardTransport();
-            }
-            else
-            {
-                Debug.Log("Not interested in boarding: " + type);
+                _willTakeTransport = true;
+                GoToPlatform();
             }
         }
         else
         {
-            Debug.Log("Escaping as a prisoner via: " + type);
+            _willTakeTransport = true;
+            GoToPlatform();
+        }
+    }
+
+
+
+    internal void TransportHasArrived(PositionType.PositionsType type, Transport transport)
+    {
+        if (type != _type) return;
+
+        if(_willTakeTransport)
+        {
+            _transport = transport;
             BoardTransport();
         }
     }
 
+    private void GoToPlatform()
+    {
+        // Move into designated position of waiting for transport NEAR it.
+    }
+
     private void BoardTransport()
     {
-        // Some logic to navigate us into transport
+        // Some logic to navigate us INSIDE transport
         // Call Board transprot on transport when arrived
+        _transport.BoardTransport(this);
     }
 
     private void Start()

@@ -24,6 +24,8 @@ public class PoliceResponder : MonoBehaviour
     [SerializeField] float _lowThrowOffset = -1.0f;
 
     [SerializeField] PrisonerEscapedDisplayer _prisonerEscapedCanvas = null;
+    [SerializeField] AudioPlayer _player = null;
+    [SerializeField] AudioClip _throwingClip = null;
 
     Person _lastCatchedPerson = null;
     float _knifeThrowingTimer = 0;
@@ -156,6 +158,9 @@ public class PoliceResponder : MonoBehaviour
 
     private void Throw()
     {
+        // Play throwing audio
+        _player.PlayUIClick(_throwingClip);
+
         var highThrow = UnityEngine.Random.Range(0, 100) > 50;
 
         var spawnPos = new Vector3(_catchingMinigamePersonPosition.position.x, _catchingMinigamePersonPosition.position.y + (highThrow ? _highThrowOffset : _lowThrowOffset));

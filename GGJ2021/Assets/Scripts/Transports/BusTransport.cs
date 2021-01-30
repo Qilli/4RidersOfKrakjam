@@ -2,14 +2,14 @@
 
 public class BusTransport : Transport
 {
-    public override void Arrive()
+    public override void StartArriving()
     {
-        base.Arrive();
+        base.StartArriving();
         Debug.Log("Bus arriving!");
     }
 
-    public override void Depart()
+    public override void StartDeparting()
     {
-        base.Depart();
+        base.StartDeparting();
     }
 }

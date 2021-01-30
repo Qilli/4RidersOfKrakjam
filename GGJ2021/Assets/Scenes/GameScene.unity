@@ -988,7 +988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255468339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: -4.04, z: 0}
+  m_LocalPosition: {x: 62.8, y: 29.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1236800900}
@@ -1160,7 +1160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289204480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.28, y: -4.04, z: 0}
+  m_LocalPosition: {x: 62.8, y: -9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1236800900}
@@ -2246,7 +2246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424631112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.29, y: -4.04, z: 0}
+  m_LocalPosition: {x: 62.8, y: 62.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1236800900}
@@ -2493,6 +2493,9 @@ MonoBehaviour:
   _dodgeSpeed: 10
   _speed: 7
   _isAlive: 1
+  _animRunSpeed: 2
+  _player: {fileID: 1363290676}
+  _impactClip: {fileID: 8300000, guid: b0d8f7fc6bcb99049a61d63c70d95016, type: 3}
 --- !u!61 &497471704
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2576,7 +2579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513357805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.25, y: 3.63, z: 0}
+  m_LocalPosition: {x: 65.52, y: 45.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 796347026}
@@ -2799,7 +2802,7 @@ GameObject:
   - component: {fileID: 592208286}
   - component: {fileID: 592208285}
   m_Layer: 0
-  m_Name: PrisonerEscapedCanbas
+  m_Name: PrisonerEscapedCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3106,16 +3109,22 @@ MonoBehaviour:
   _efficiencyText: {fileID: 1709783312}
   _opinionText: {fileID: 951396915}
   _opinions:
-  - OpinionText: You are going into prison for this!
+  - Clip: {fileID: 8300000, guid: 6dc4958b9d57836478637d2428468571, type: 3}
+    OpinionText: You are going into prison for this!
     FromEffi: 0
-  - OpinionText: You should look for a new job!
+  - Clip: {fileID: 8300000, guid: e02d51c33177cdb4d949d0a3d5e657d6, type: 3}
+    OpinionText: You should look for a new job!
     FromEffi: 25
-  - OpinionText: Could be better!
+  - Clip: {fileID: 8300000, guid: fa611c6974a035e4cb4eb7e05bd8156a, type: 3}
+    OpinionText: Could be better!
     FromEffi: 50
-  - OpinionText: Good job!
+  - Clip: {fileID: 0}
+    OpinionText: Good job!
     FromEffi: 75
-  - OpinionText: Perfect! Promotions is coming your way!
+  - Clip: {fileID: 8300000, guid: 95bdd3d052eb3f645b4a938179e8bb48, type: 3}
+    OpinionText: Perfect! Promotions is coming your way!
     FromEffi: 95
+  _player: {fileID: 1363290676}
 --- !u!1 &708390447
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,7 +3337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746947703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 3.63, z: 0}
+  m_LocalPosition: {x: -2.8999996, y: 45.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 796347026}
@@ -3609,6 +3618,10 @@ MonoBehaviour:
   _gameManager: {fileID: 1561683112}
   _type: 2
   _passengersOnBoard: []
+  _player: {fileID: 1363290676}
+  _announcmentsClip: {fileID: 8300000, guid: b585709474d8f564894a40cc7a78a5cc, type: 3}
+  _arrivalClip: {fileID: 8300000, guid: a6a03a0af6143f042afe25d60c964c4f, type: 3}
+  _departureClip: {fileID: 8300000, guid: a6a03a0af6143f042afe25d60c964c4f, type: 3}
 --- !u!4 &812941116
 Transform:
   m_ObjectHideFlags: 0
@@ -3617,8 +3630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812941114}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 2.13, y: -7.22, z: 0}
-  m_LocalScale: {x: 0.42946586, y: 0.9837347, z: 1}
+  m_LocalPosition: {x: -60.3, y: 49.7, z: 0}
+  m_LocalScale: {x: 0.79329145, y: 2.1368828, z: 1}
   m_Children: []
   m_Father: {fileID: 1358255166}
   m_RootOrder: 2
@@ -3661,7 +3674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: a5cf5e44a9b306f4a8fd3340bf3f7a6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3711,6 +3724,10 @@ MonoBehaviour:
   _gameManager: {fileID: 1561683112}
   _type: 0
   _passengersOnBoard: []
+  _player: {fileID: 1363290676}
+  _announcmentsClip: {fileID: 0}
+  _arrivalClip: {fileID: 0}
+  _departureClip: {fileID: 0}
 --- !u!4 &824542783
 Transform:
   m_ObjectHideFlags: 0
@@ -3718,13 +3735,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824542781}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 4.72, y: -7.28, z: 0}
-  m_LocalScale: {x: 0.44304988, y: 0.9918674, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 79.744, y: 6.424, z: 0}
+  m_LocalScale: {x: 1.4626598, y: 4.099487, z: 1}
   m_Children: []
   m_Father: {fileID: 1358255166}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &824542784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3763,7 +3780,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: a5cf5e44a9b306f4a8fd3340bf3f7a6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6165,7 +6182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260403814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.06, y: -7.16, z: 0}
+  m_LocalPosition: {x: -15.58, y: -41.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 225779765}
@@ -6349,7 +6366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323489151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.36, y: 3.63, z: 0}
+  m_LocalPosition: {x: -62.23, y: 45.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 796347026}
@@ -6667,6 +6684,9 @@ MonoBehaviour:
   _dodgeSpeed: 10
   _speed: 7
   _isAlive: 1
+  _animRunSpeed: 2
+  _player: {fileID: 1363290676}
+  _impactClip: {fileID: 8300000, guid: b0d8f7fc6bcb99049a61d63c70d95016, type: 3}
 --- !u!61 &1422981200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6730,7 +6750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483497783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.06, y: -0.29, z: 0}
+  m_LocalPosition: {x: -15.58, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 225779765}
@@ -7319,7 +7339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534359099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.06, y: 6.15, z: 0}
+  m_LocalPosition: {x: -15.58, y: -44.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 225779765}
@@ -7374,9 +7394,9 @@ MonoBehaviour:
   - {fileID: 824542782}
   - {fileID: 812941115}
   _minMaxArrivalInterval:
-  - {x: 5, y: 10}
-  - {x: 5, y: 10}
-  - {x: 5, y: 10}
+  - {x: 15, y: 15}
+  - {x: 15, y: 15}
+  - {x: 15, y: 15}
   _arrivalTimer: 0
   _arrivalThreshold: 0
   _gameManager: {fileID: 1561683112}
@@ -8352,11 +8372,15 @@ MonoBehaviour:
   _placeToSpawn: {fileID: 1260403815}
   _placeToArrive: {fileID: 1483497784}
   _placeToDepart: {fileID: 1534359100}
-  _speed: 5
-  _departureDelay: 5
+  _speed: 4
+  _departureDelay: 10
   _gameManager: {fileID: 1561683112}
   _type: 1
   _passengersOnBoard: []
+  _player: {fileID: 1363290676}
+  _announcmentsClip: {fileID: 8300000, guid: b585709474d8f564894a40cc7a78a5cc, type: 3}
+  _arrivalClip: {fileID: 8300000, guid: eeec98651a7081f45a1e326112ab28a9, type: 3}
+  _departureClip: {fileID: 8300000, guid: eeec98651a7081f45a1e326112ab28a9, type: 3}
 --- !u!4 &1768308309
 Transform:
   m_ObjectHideFlags: 0
@@ -8365,8 +8389,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768308307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.055, y: -7.88, z: 0}
-  m_LocalScale: {x: 0.2971734, y: 1.2829964, z: 1}
+  m_LocalPosition: {x: -16.6, y: -29.88, z: 0}
+  m_LocalScale: {x: 1.064621, y: 5.687466, z: 1}
   m_Children: []
   m_Father: {fileID: 1358255166}
   m_RootOrder: 0
@@ -8409,7 +8433,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: a5cf5e44a9b306f4a8fd3340bf3f7a6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11212,6 +11236,8 @@ MonoBehaviour:
   _highThrowOffset: 1.9
   _lowThrowOffset: 0.4
   _prisonerEscapedCanvas: {fileID: 592208286}
+  _player: {fileID: 1363290676}
+  _throwingClip: {fileID: 8300000, guid: 17c3d96f7aa9286438ed6cfc09475033, type: 3}
 --- !u!1 &831032432677770972
 GameObject:
   m_ObjectHideFlags: 0

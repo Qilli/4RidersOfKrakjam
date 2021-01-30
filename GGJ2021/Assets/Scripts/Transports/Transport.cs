@@ -18,6 +18,12 @@ public class Transport : MonoBehaviour
     [Header("Runtime")]
     [SerializeField] List<Person> _passengersOnBoard = new List<Person>();
 
+    [Header("Audio")]
+    [SerializeField] AudioPlayer _player = null;
+    [SerializeField] AudioClip _announcmentsClip = null;
+    [SerializeField] AudioClip _arrivalClip = null;
+    [SerializeField] AudioClip _departureClip = null;
+
     protected bool _isArrived = false;
     protected bool _canDepart = false;
 
@@ -35,14 +41,23 @@ public class Transport : MonoBehaviour
         _passengersOnBoard.Add(person);
     }
 
-    public virtual void Arrive()
+    public virtual void StartArriving()
     {
         this.transform.position = _placeToSpawn.position;
-
         this.enabled = true;
+
+        if (_announcmentsClip)
+            _player.PlayTransportAudio(_announcmentsClip);
+
+        var persons = FindObjectsOfType<Person>();
+
+        foreach (var p in persons)
+        {
+            p.TransportWillAriveSoon(_type);
+        }
     }
 
-    public virtual void Depart()
+    public virtual void StartDeparting()
     {
         _canDepart = true;
 
@@ -53,6 +68,9 @@ public class Transport : MonoBehaviour
                 _gameManager.NotifyPrisonerEscapedWithTransport(p, this);
             }
         }
+
+        if (_departureClip)
+            _player.PlayTransportAudio(_departureClip);
     }
 
     public virtual void Update()
@@ -72,7 +90,7 @@ public class Transport : MonoBehaviour
             {
                 _isArrived = true;
 
-                Invoke(nameof(Depart), _departureDelay);
+                Invoke(nameof(StartDeparting), _departureDelay);
 
                 var persons = FindObjectsOfType<Person>();
 
@@ -80,6 +98,9 @@ public class Transport : MonoBehaviour
                 {
                     p.TransportHasArrived(_type);
                 }
+
+                if (_arrivalClip)
+                    _player.PlayTransportAudio(_arrivalClip);
             }
         }
     }
