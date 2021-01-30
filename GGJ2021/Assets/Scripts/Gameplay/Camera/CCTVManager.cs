@@ -11,13 +11,19 @@ using UnityEngine;
 public class CCTVManager : MonoBehaviour
 {
     [SerializeField]
-    Camera gameCamera;
+    CameraController gameCamera;
 
     public List<CCTVCamera> cameras = new List<CCTVCamera>();
+
+    private void Awake()
+    {
+        moveGameCameraTo(0);
+    }
 
     public void moveGameCameraTo(int index)
     {
         gameCamera.transform.position = cameras[index].transform.position;
+        gameCamera.UsedCCTVCamera = cameras[index];
     }
 
     public void moveGameCameraTo(CCTVCamera cam)

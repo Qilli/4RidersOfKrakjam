@@ -16,7 +16,13 @@ public class CCTVCamera : MonoBehaviour
     Transform position;
 
 
+    [SerializeField]
+    CCTVCameraBoundary boundary;
+    
+
+
     public Transform Position { get => position; }
+    public CCTVCameraBoundary Boundary { get => boundary; }
 
     private void Awake()
     {

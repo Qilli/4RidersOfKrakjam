@@ -15,11 +15,11 @@ TagManager:
   - 
   - 
   - Person
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Walls
+  - StaticElements
+  - InteractiveStaticelements
+  - Decorations
   - 
   - 
   - 

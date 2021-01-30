@@ -19,18 +19,30 @@ public class CameraController : MonoBehaviour
     Vector2 diffrence = new Vector2();
 
     public CCTVCamera UsedCCTVCamera;
+    Camera cam;
 
 
+    [SerializeField]
+    float cameraMouseMoveOffset = 5f;
 
+    private void Awake()
+    {
+        cam = GetComponent<Camera>();
+    }
     private void Start()
     {
         targetOrtho = Camera.main.orthographicSize;
         initCameraMoveSpeed = cameraMoveSpeed;
     }
 
+    public void controlCameraBoundary()
+    {
+
+    }
+
     public void moveCameraToPosition(int index)
     {
-        
+
     }
 
     public void moveCameraToPosition()
@@ -46,7 +58,8 @@ public class CameraController : MonoBehaviour
             targetOrtho -= scroll * zoomSpeed;
             targetOrtho = Mathf.Clamp(targetOrtho, minOrtho, maxOrtho);
 
-            diffrence = UsedCCTVCamera.transform.position - Camera.main.transform.position;
+            if (UsedCCTVCamera != null)
+                diffrence = UsedCCTVCamera.transform.position - Camera.main.transform.position;
         }
 
         Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
@@ -65,13 +78,73 @@ public class CameraController : MonoBehaviour
 
     public void moveCamera(float x, float y)
     {
-        Camera.main.transform.position = new Vector2(Camera.main.transform.position.x + x * Time.deltaTime * cameraMoveSpeed, Camera.main.transform.position.y + y*Time.deltaTime*cameraMoveSpeed);
+        float recalculatedX = cam.transform.position.x + x * Time.deltaTime * cameraMoveSpeed;
+        float recalculatedY = cam.transform.position.y + y * Time.deltaTime * cameraMoveSpeed;
 
+        if (!checkCameraInsideXBoundary(x))
+        {
+            recalculatedX = cam.transform.position.x;
+        }
+
+        if (!checkCameraInsideYBoundary(y))
+        {
+            recalculatedY = cam.transform.position.y;
+        }
+
+
+        cam.transform.position = new Vector3(recalculatedX, recalculatedY, cam.transform.position.z);
+
+    }
+
+
+    public void moveCameraOnMouse()
+    {
+        float x = 0;
+        float y = 0;
+        Debug.Log(Input.mousePosition);
+        if (Input.mousePosition.x < cameraMouseMoveOffset)
+        {
+            x = -cameraMoveSpeed;
+        }
+        else if (Input.mousePosition.x > Screen.width - cameraMouseMoveOffset)
+        {
+            x = cameraMoveSpeed;
+        }
+
+        if (Input.mousePosition.y < cameraMouseMoveOffset)
+        {
+            y = -cameraMoveSpeed;
+        }
+        else if (Input.mousePosition.y > Screen.height - cameraMouseMoveOffset)
+        {
+            y = cameraMoveSpeed;
+        }
+
+        moveCamera(x * 0.1f, y * 0.1f);
+    }
+
+
+    bool checkCameraInsideXBoundary(float x)
+    {
+        return UsedCCTVCamera.Boundary.upperLeftBoundary.x < cam.transform.position.x + x * Time.deltaTime * cameraMoveSpeed &&
+             UsedCCTVCamera.Boundary.upperRightBoundary.x > cam.transform.position.x + cam.rect.width + x * Time.deltaTime * cameraMoveSpeed;
+    }
+
+    bool checkCameraInsideYBoundary(float y)
+    {
+        return UsedCCTVCamera.Boundary.upperLeftBoundary.y < cam.transform.position.y + y * Time.deltaTime * cameraMoveSpeed &&
+              UsedCCTVCamera.Boundary.upperRightBoundary.y > cam.transform.position.y + cam.rect.height + y * Time.deltaTime * cameraMoveSpeed;
     }
 
     private void Update()
     {
+ 
         handleScroll();
-        moveCamera(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        float x = Input.GetAxisRaw("Horizontal");
+            float y = Input.GetAxisRaw("Vertical");
+
+
+        moveCameraOnMouse();
+        moveCamera(x, y);
     }
 }
