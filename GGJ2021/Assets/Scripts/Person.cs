@@ -30,6 +30,7 @@ public class Person : MonoBehaviour
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
     bool _isEscaped = false;
+    bool _isCaught = false;
     Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
@@ -51,9 +52,9 @@ public class Person : MonoBehaviour
 
     internal void StopWalking()
     {
+
         // Stop navigating
         // Stop listening to transports
-        PersonNavigator.enabled = false;
         _animator.SetBool("IsWalking", false);
     }
 
@@ -159,6 +160,8 @@ public class Person : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (_isCaught) return;
+        // Dont allow it, if we are being caught
         var player = FindObjectOfType<AudioPlayer>();
         player.PlayUIClick(_clickedClip);
 
@@ -167,6 +170,7 @@ public class Person : MonoBehaviour
 
     public void GetCaught()
     {
+        _isCaught = true;
         _policeResponder.CatchThatGuy(this);
 
         StopWalking();
