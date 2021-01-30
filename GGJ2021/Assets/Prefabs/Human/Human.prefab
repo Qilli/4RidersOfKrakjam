@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7104722992518804324}
   - component: {fileID: 7878819654030131167}
+  - component: {fileID: 9140551288200794263}
   m_Layer: 0
   m_Name: Gadget_HandFront_SuitCase_Front
   m_TagString: Untagged
@@ -373,6 +374,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9140551288200794263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975641678347485343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40aca783c0140964188ba56d141ca2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partType: 8
 --- !u!1 &998419036746667321
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +778,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 47
+  m_SortingOrder: 4
   m_Sprite: {fileID: -7595710888645595404, guid: 865ff30d325b359499c70dd3384e4158,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1549,7 +1563,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 46
+  m_SortingOrder: 3
   m_Sprite: {fileID: -6498499534165970230, guid: 865ff30d325b359499c70dd3384e4158,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2766,7 +2780,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 45
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1757623326591637700, guid: 865ff30d325b359499c70dd3384e4158,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
