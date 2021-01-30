@@ -10,6 +10,8 @@ public class Person : MonoBehaviour
     [Range(0.0f, 100.0f)]
     [SerializeField] float _chanceToEnterTransport = 50;
 
+    [SerializeField] Color _prisonColor;
+
     [SerializeField] List<GameObject> _personElements = new List<GameObject>();
 
     [Header("Other")]
@@ -118,12 +120,24 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
+        Destroy(copy.GetComponent<Animator>());
 
         // Disable decorations
 
-        var components = GetComponentsInChildren<BodyPart>();
+        var components = copy.GetComponentsInChildren<BodyPart>();
 
+        foreach(var bp in components)
+        {
+            if(bp.Type == BodyPart.BodyPartType.Luggage || bp.Type == BodyPart.BodyPartType.Backpack || bp.Type == BodyPart.BodyPartType.ShirtDecor)
+            {
+                bp.gameObject.SetActive(false);
+            }
 
+            if(bp.Type == BodyPart.BodyPartType.Shirt || bp.Type == BodyPart.BodyPartType.Trousers)
+            {
+                bp.GetComponent<SpriteRenderer>().color = _prisonColor;
+            }
+        }
 
         // Recolor person to prison color (orange)
 
