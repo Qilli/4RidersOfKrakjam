@@ -23,16 +23,15 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
         {
             var portrait = prisoner.GetPortraitOfPrisoner();
 
-            portrait.transform.SetParent(this.transform);
+            portrait.transform.SetParent(null);
 
             var renderCam = _renderCams[iterator];
             iterator++;
 
             portrait.transform.position = new Vector3(renderCam.transform.position.x, renderCam.transform.position.y + _camYOffset, 0);
-            // Move portrait to button
 
             var newButton = Instantiate(_buttonPrefab, this.transform);
-            newButton.Init(prisoner.PrisonerReference, _detailsPanel);
+            newButton.Init(prisoner.PrisonerReference, _detailsPanel, renderCam);
             newButton.GetComponent<RawImage>().texture = renderCam.targetTexture;
             _buttonsSpawned.Add(newButton);
         }

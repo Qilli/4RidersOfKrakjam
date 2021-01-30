@@ -11,21 +11,23 @@ public class PrisonerReferenceButton : MonoBehaviour
     [SerializeField] PrisonerReference _reference = null;
     [SerializeField] Transform _portraitParent = null;
 
+    Camera _renderCam = null;
+
     public PrisonerReference Reference { get { return _reference; } }
 
     ReferenceDetailsPanel _detailsPanel = null;
 
-    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel)
+    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel, Camera renderCam)
     {
         _detailsPanel = detailsPanel;
         _reference = reference;
+        _renderCam = renderCam;
         CreatePrisonerPortrait();
     }
 
     public void DisplayDetails()
     {
-        Debug.Log("Displaying details of: " + _reference.name);
-        _detailsPanel.DisplayDetailsOfReference(_reference);
+        _detailsPanel.DisplayDetailsOfReference(_reference, _renderCam);
     }
 
     private void CreatePrisonerPortrait()

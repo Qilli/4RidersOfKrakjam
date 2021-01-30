@@ -13,7 +13,7 @@ public class Person : MonoBehaviour
     [SerializeField] List<GameObject> _personElements = new List<GameObject>();
 
     [Header("Other")]
-    [SerializeField] PoliceResponder _policeResponder = null; // Maybe inject this
+    [SerializeField] PoliceResponder _policeResponder = null;
     [SerializeField] PositionType.PositionsType _type;
 
     public bool IsPrisoner { get { return _isPrisoner; } }
@@ -118,6 +118,14 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
+
+        // Disable decorations
+
+        var components = GetComponentsInChildren<BodyPart>();
+
+
+
+        // Recolor person to prison color (orange)
 
         return copy;
     }
