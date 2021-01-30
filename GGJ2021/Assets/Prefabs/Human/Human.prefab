@@ -5096,7 +5096,7 @@ MonoBehaviour:
   _personElements: []
   _policeResponder: {fileID: 0}
   _type: 0
-  _clickedClip: {fileID: 0}
+  _clickedClip: {fileID: 8300000, guid: 94c3c2e3e690d98468c33c1d2ccc254e, type: 3}
   HasLuggage: 0
   _isPrisoner: 0
   _willTakeTransport: 0
