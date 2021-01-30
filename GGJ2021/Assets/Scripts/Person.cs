@@ -21,6 +21,7 @@ public class Person : MonoBehaviour
 
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
+    public PersonNavigator PersonNavigator;
 
 
     public void SetAsPrisoner(PrisonerReference reference)
@@ -47,6 +48,7 @@ public class Person : MonoBehaviour
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
+        PersonNavigator = GetComponent<PersonNavigator>();
     }
 
     internal void TransportHasArrived(PositionType.PositionsType type)
@@ -118,6 +120,7 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Rigidbody2D>());
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
+        Destroy(copy.GetComponent<PersonNavigator>());
 
         return copy;
     }

@@ -5038,6 +5038,8 @@ GameObject:
   - component: {fileID: 819841964072459118}
   - component: {fileID: 4771956049220955308}
   - component: {fileID: 8948172131693307390}
+  - component: {fileID: 6881532718723314526}
+  - component: {fileID: -2730122584442150813}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -5079,6 +5081,7 @@ MonoBehaviour:
   _personElements: []
   _policeResponder: {fileID: 0}
   _type: 0
+  PersonNavigator: {fileID: 0}
 --- !u!50 &4771956049220955308
 Rigidbody2D:
   serializedVersion: 4
@@ -5126,6 +5129,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.715725, y: 16.802786}
   m_EdgeRadius: 0
+--- !u!114 &6881532718723314526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826331686288784471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d56d37cfeb9bda4d92016280dad19f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follower: {fileID: 0}
+  currentNode: {fileID: 0}
+--- !u!114 &-2730122584442150813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826331686288784471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c188f78fa4476341b64705f47a5a55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: 0}
+  m_Start: {fileID: 0}
+  m_End: {fileID: 0}
+  m_Speed: 0.01
+  m_Path:
+    m_Nodes: []
 --- !u!1 &8924228594908672123
 GameObject:
   m_ObjectHideFlags: 0

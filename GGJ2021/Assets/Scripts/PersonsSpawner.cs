@@ -94,6 +94,8 @@ public class PersonsSpawner : MonoBehaviour
             newCivilian.gameObject.name = "Civilian " + i;
             newCivilian.SetConfirmator(_confirmator);
             newCivilian.SetPositionType(posToSpawn.Type);
+            newCivilian.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
+            newCivilian.PersonNavigator.setDestination(posToSpawn.NodeUsed.connections[0]);
             _civilians.Add(newCivilian);
             _randomizer.RandomizePerson(newCivilian);
         }
@@ -109,6 +111,15 @@ public class PersonsSpawner : MonoBehaviour
             newPrisoner.gameObject.name = "Prisoner " + i;
             newPrisoner.SetConfirmator(_confirmator);
             newPrisoner.SetPositionType(posToSpawn.Type);
+
+            newPrisoner.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
+            if(posToSpawn.NodeUsed.connections.Count > 0){
+                newPrisoner.PersonNavigator.setDestination(posToSpawn.NodeUsed.connections[0]);
+            }
+            else
+            {
+                newPrisoner.PersonNavigator.setDestination(posToSpawn.NodeUsed);
+            }
             _prisoners.Add(newPrisoner);
 
             var randomPrisonerReference = _prisonerReferences[UnityEngine.Random.Range(0, _prisonerReferences.Count)];
@@ -133,7 +144,13 @@ public class PersonsSpawner : MonoBehaviour
 
     private PositionType ChooseRandomSpawnPoint()
     {
-        var randomSpawnPos = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+        int randomIndex = UnityEngine.Random.Range(0, _spawnPoints.Count);
+
+        var randomSpawnPos = _spawnPoints[randomIndex];
+
         return randomSpawnPos;
+
     }
+
+
 }
