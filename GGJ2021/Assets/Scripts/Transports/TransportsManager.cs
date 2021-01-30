@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles transport arrival / departures and displays their time to leave. 
@@ -17,6 +18,10 @@ public class TransportsManager : MonoBehaviour
     [SerializeField] float _arrivalThreshold = 0;
 
     [SerializeField] MainGameManager _gameManager = null;
+
+    [Header("UI")]
+    [SerializeField] GameObject _arrivalPanel = null;
+    [SerializeField] Text _arrivalText = null; 
 
     private void Start()
     {
@@ -43,8 +48,6 @@ public class TransportsManager : MonoBehaviour
     {
         _arrivalTimer += Time.deltaTime;
 
-        // Handle close to arrival case ONCE
-
         if (_arrivalTimer > _arrivalThreshold && _transports.Count > 0)
         {
             SetNewTimer();
@@ -52,7 +55,19 @@ public class TransportsManager : MonoBehaviour
             _transports.RemoveAt(0);
         }
 
+        if(_transports.Count == 0)
+        {
+            _arrivalPanel.SetActive(false);
+        }
+
         NotifyOfLastTransport();
+
+        FeedArrivalTimer();
+    }
+
+    private void FeedArrivalTimer()
+    {
+        _arrivalText.text = (_arrivalThreshold - _arrivalTimer).ToString("F");
     }
 
     private void NotifyOfLastTransport()

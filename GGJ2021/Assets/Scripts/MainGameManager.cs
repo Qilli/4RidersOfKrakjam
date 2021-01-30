@@ -57,6 +57,8 @@ public class MainGameManager : MonoBehaviour
 
     internal void NotifyPrisonerEscapedWithTransport(Person person, Transport transport)
     {
+        _referenceDisplayer.MarkAsEscaped(person);
+
         Debug.Log("Notified escaped prisoner using: " + transport.name);
         person.SetEscapeStatus();
     }

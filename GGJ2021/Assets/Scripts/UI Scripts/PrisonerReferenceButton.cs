@@ -11,6 +11,7 @@ public class PrisonerReferenceButton : MonoBehaviour
     [SerializeField] PrisonerReference _reference = null;
     [SerializeField] Transform _portraitParent = null;
     [SerializeField] GameObject _crossout = null;
+    [SerializeField] GameObject _escapedLabel = null;
 
     [Header("Runtime")]
     [SerializeField] Person _prisoner = null;
@@ -34,6 +35,14 @@ public class PrisonerReferenceButton : MonoBehaviour
     public void DisplayDetails()
     {
         _detailsPanel.DisplayDetailsOfReference(_reference, _renderCam);
+    }
+
+    internal void MarkAsEscaped(Person escapedPerson)
+    {
+        if (escapedPerson == _prisoner)
+        {
+            _escapedLabel.SetActive(true);
+        }
     }
 
     internal void MarkAsCaught(Person caughtPrisoner)
