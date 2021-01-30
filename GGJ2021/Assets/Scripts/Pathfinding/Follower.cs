@@ -50,6 +50,7 @@ public class Follower : MonoBehaviour
 		m_Start = start;
 		m_End = end;
 		m_Path = m_Graph.GetShortestPath(start, end);
+		m_Speed = Random.Range(0.005f, 0.015f);
 		Follow(m_Path);
     }
 
