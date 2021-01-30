@@ -13,6 +13,7 @@ public class Opinion
         FromEffi = fromEffi;
     }
 
+    public AudioClip Clip;
     public string OpinionText;
     public float FromEffi;
 }
@@ -28,6 +29,8 @@ public class GameSummaryDisplayer : MonoBehaviour
     [SerializeField] Text _opinionText = null;
 
     [SerializeField] List<Opinion> _opinions = new List<Opinion>();
+
+    [SerializeField] AudioPlayer _player = null;
 
     private void Awake()
     {
@@ -61,6 +64,9 @@ public class GameSummaryDisplayer : MonoBehaviour
                 highestFound = o;
             }
         }
+
+        if(highestFound.Clip)
+            _player.PlayUIClick(highestFound.Clip);
 
         return highestFound.OpinionText;
     }

@@ -48,7 +48,7 @@ public class TransportsManager : MonoBehaviour
         if (_arrivalTimer > _arrivalThreshold && _transports.Count > 0)
         {
             SetNewTimer();
-            _transports[0].Arrive();
+            _transports[0].StartArriving();
             _transports.RemoveAt(0);
         }
 

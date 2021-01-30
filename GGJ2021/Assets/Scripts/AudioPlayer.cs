@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,5 +22,14 @@ public class AudioPlayer : MonoBehaviour
         _uiClickAudioSource.loop = false;
         _uiClickAudioSource.clip = clip;
         _uiClickAudioSource.Play();
+    }
+
+    internal void PlayTransportAudio(AudioClip announcmentsClip)
+    {
+        var newAudioSource = Instantiate(_uiClickAudioSource, this.transform);
+
+        newAudioSource.loop = false;
+        newAudioSource.clip = announcmentsClip;
+        newAudioSource.Play();
     }
 }
