@@ -290,7 +290,7 @@ Transform:
   m_LocalPosition: {x: 970.9499, y: 535.132, z: -211.18259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1681152053}
+  - {fileID: 558849661}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2377,7 +2377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497471701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.85, y: -4.99, z: 0}
+  m_LocalPosition: {x: -35.5, y: 19.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 106515218}
@@ -2399,7 +2399,9 @@ MonoBehaviour:
   _startingPos: {fileID: 1663607238}
   _target: {fileID: 942107355}
   _responder: {fileID: 831032432638317103}
-  _speed: 15
+  _dodgeSpeed: 10
+  _speed: 7
+  _isAlive: 1
 --- !u!61 &497471704
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2413,7 +2415,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7443354, y: 1.2685716}
+  m_Offset: {x: 0.7443354, y: 1.3285761}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2424,7 +2426,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1513295, y: 3.9604144}
+  m_Size: {x: 2.1513295, y: 2.4944248}
   m_EdgeRadius: 0
 --- !u!1 &506770486
 GameObject:
@@ -2683,14 +2685,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558849660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.13184, y: 15.364616, z: -5.837657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -928.81805, y: -519.7674, z: 205.34492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 826184460}
   - {fileID: 1948847550}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 21897857}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &645746377
 MonoBehaviour:
@@ -3015,6 +3017,7 @@ Transform:
   - {fileID: 220199212}
   - {fileID: 700341990}
   - {fileID: 495332389}
+  - {fileID: 1681152053}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6708,7 +6711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422981197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.641, y: 0, z: 0}
+  m_LocalPosition: {x: -111.2, y: 19.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1013386197}
@@ -6730,7 +6733,9 @@ MonoBehaviour:
   _startingPos: {fileID: 1245501222}
   _target: {fileID: 942107355}
   _responder: {fileID: 831032432638317103}
-  _speed: 15
+  _dodgeSpeed: 10
+  _speed: 7
+  _isAlive: 1
 --- !u!61 &1422981200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6744,7 +6749,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.7704152, y: 1.0609729}
+  m_Offset: {x: -0.3724327, y: 1.3285761}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6755,7 +6760,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.09917, y: 5.161943}
+  m_Size: {x: 1.2305679, y: 2.4944248}
   m_EdgeRadius: 0
 --- !u!114 &1473663965
 MonoBehaviour:
@@ -7564,8 +7569,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681152052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 968.02716, y: 535.3533, z: -208.61435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1803226739}
@@ -7577,8 +7582,8 @@ Transform:
   - {fileID: 146480541}
   - {fileID: 2079103645}
   - {fileID: 170460861}
-  m_Father: {fileID: 21897857}
-  m_RootOrder: 0
+  m_Father: {fileID: 743119183}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1699065321
 GameObject:
@@ -10792,6 +10797,11 @@ MonoBehaviour:
   _policeMans:
   - {fileID: 497471703}
   - {fileID: 1422981199}
+  _knifeProjectilePrefab: {fileID: 7622656926882035695, guid: b34b4602c2291ce46a35c7f1a8a24656,
+    type: 3}
+  _knifeThrowingInterval: 0.8
+  _highThrowOffset: 1.9
+  _lowThrowOffset: 0.4
 --- !u!1 &831032432677770972
 GameObject:
   m_ObjectHideFlags: 0

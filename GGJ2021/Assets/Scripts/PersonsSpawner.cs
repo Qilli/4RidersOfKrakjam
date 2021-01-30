@@ -55,11 +55,6 @@ public class PersonsSpawner : MonoBehaviour
         _gameManager.SetSpawnedPrisonerAmounts(_prisonersAmount);
     }
 
-    private void Start()
-    {
-        //SpawnPersons();
-    }
-
     private void RandomizePersonsAmounts()
     {
         _civiliansAmount = UnityEngine.Random.Range(_civiliansMinMax.x, _civiliansMinMax.y + 1);
