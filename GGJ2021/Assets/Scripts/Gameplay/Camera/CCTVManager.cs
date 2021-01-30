@@ -15,6 +15,8 @@ public class CCTVManager : MonoBehaviour
 
     public List<CCTVCamera> cameras = new List<CCTVCamera>();
 
+    CCTVCamera _lastCamera;
+
     private void Awake()
     {
         moveGameCameraTo(0);
@@ -32,4 +34,22 @@ public class CCTVManager : MonoBehaviour
         moveGameCameraTo(index);
     }
 
+    #region Minigame Camera handling
+
+    public void StoreLastCamera()
+    {
+        _lastCamera = gameCamera.UsedCCTVCamera;
+    }
+
+    public void RestoreToLastCamera()
+    {
+        moveGameCameraTo(_lastCamera);
+    }
+
+    public void MoveToMinigameCamera()
+    {
+        moveGameCameraTo(3);
+    }
+
+    #endregion
 }

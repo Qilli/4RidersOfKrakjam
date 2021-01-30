@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06597e7d5005a8346980ab48335cf84c, type: 3}
-  m_Name: Camera3Boundary
+  m_Name: Camera4Boundary
   m_EditorClassIdentifier: 
-  upperLeftBoundary: {x: 30, y: 25}
-  upperRightBoundary: {x: 45, y: 35}
+  upperLeftBoundary: {x: 0, y: 0}
+  upperRightBoundary: {x: 0, y: 0}

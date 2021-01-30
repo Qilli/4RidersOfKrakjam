@@ -101,7 +101,9 @@ public class CameraController : MonoBehaviour
     {
         float x = 0;
         float y = 0;
-        Debug.Log(Input.mousePosition);
+
+        //Debug.Log(Input.mousePosition);
+
         if (Input.mousePosition.x < cameraMouseMoveOffset)
         {
             x = -cameraMoveSpeed;
@@ -138,7 +140,9 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
- 
+        if (UsedCCTVCamera.IsMinigameCamera) return;
+
+
         handleScroll();
         float x = Input.GetAxisRaw("Horizontal");
             float y = Input.GetAxisRaw("Vertical");
