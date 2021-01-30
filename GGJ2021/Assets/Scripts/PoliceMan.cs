@@ -13,16 +13,25 @@ public class PoliceMan : MonoBehaviour
 
     [SerializeField] bool _isAlive = true;
 
+    [SerializeField] float _animRunSpeed = 2.0f;
+
     public bool IsAlive { get => _isAlive; }
 
     public void Die()
     {
         _isAlive = false;
         // Play some death effects!
+
+        var animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsWalking", false);
     }
 
     private void OnEnable()
     {
+        var animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsWalking", true);
+        animator.SetFloat("Speed", _animRunSpeed);
+
         this.transform.position = _startingPos.transform.position;
     }
 

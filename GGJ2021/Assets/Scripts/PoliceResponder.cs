@@ -121,6 +121,7 @@ public class PoliceResponder : MonoBehaviour
         if(deadPoliceman >= _policeMans.Count)
         {
             _prisonerEscapedCanvas.gameObject.SetActive(true);
+            _gameManager.NotifyPrisonerEscapedPolice(_lastCatchedPerson);
             foreach (var p in _policeMans)
             {
                 p.SetAlive();

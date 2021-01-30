@@ -70,7 +70,6 @@ public class MainGameManager : MonoBehaviour
         {
             DisplaySummary();
         }
-
     }
 
     private bool ShouldGoToSummary()
