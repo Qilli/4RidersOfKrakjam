@@ -872,7 +872,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8148099643754273232, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
+    - {fileID: 6235394587661819324, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
+    - {fileID: 5752495575578609878, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
 --- !u!4 &106515218 stripped
 Transform:
@@ -1704,6 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMinigameCamera: 0
+  _minigameCameraOrtho: 10
   boundary: {fileID: 11400000, guid: 44ff1ecc7474309409e9e56404e9aa2b, type: 2}
 --- !u!1 &420517627
 GameObject:
@@ -2072,6 +2076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingPos: {fileID: 1663607238}
   _target: {fileID: 942107355}
+  _responder: {fileID: 831032432638317103}
   _speed: 15
 --- !u!61 &497471704
 BoxCollider2D:
@@ -2083,10 +2088,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.7443354, y: 1.2685716}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2097,7 +2102,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.64, y: 3.04}
+  m_Size: {x: 2.1513295, y: 3.9604144}
   m_EdgeRadius: 0
 --- !u!1 &506770486
 GameObject:
@@ -2206,6 +2211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMinigameCamera: 0
+  _minigameCameraOrtho: 10
   boundary: {fileID: 11400000, guid: 608d32e358642ab4c9f68074b1f7bd22, type: 2}
 --- !u!1 &524355600
 GameObject:
@@ -3462,7 +3468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942107354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73.91589, y: 17.145386, z: -55.876053}
+  m_LocalPosition: {x: -73.91589, y: 17.145386, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 881281725}
@@ -3481,6 +3487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMinigameCamera: 1
+  _minigameCameraOrtho: 10
   boundary: {fileID: 11400000, guid: 66c3927afef0e3c41b300a9d6ee803a2, type: 2}
 --- !u!1 &947827064
 GameObject:
@@ -4196,7 +4203,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8148099643754273232, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
+    - {fileID: 6235394587661819324, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
+    - {fileID: 5752495575578609878, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef387d7fee814847a4d09051fb1b182, type: 3}
 --- !u!4 &1013386197 stripped
 Transform:
@@ -4487,7 +4497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109805047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 2.1, z: -10}
+  m_LocalPosition: {x: 7, y: 2.1, z: -55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 524355601}
@@ -5520,7 +5530,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422981198}
-  - component: {fileID: 1422981201}
   - component: {fileID: 1422981200}
   - component: {fileID: 1422981199}
   m_Layer: 0
@@ -5538,7 +5547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422981197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.641, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1013386197}
@@ -5559,6 +5568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingPos: {fileID: 1245501222}
   _target: {fileID: 942107355}
+  _responder: {fileID: 831032432638317103}
   _speed: 15
 --- !u!61 &1422981200
 BoxCollider2D:
@@ -5570,10 +5580,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.7704152, y: 1.0609729}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5584,58 +5594,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.64, y: 3.04}
+  m_Size: {x: 2.09917, y: 5.161943}
   m_EdgeRadius: 0
---- !u!212 &1422981201
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422981197}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a5cf5e44a9b306f4a8fd3340bf3f7a6c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!114 &1473663965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7103,6 +7063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMinigameCamera: 0
+  _minigameCameraOrtho: 10
   boundary: {fileID: 11400000, guid: f1405404d89daf04ba396ef0a80a7f3f, type: 2}
 --- !u!1 &1896135473
 GameObject:
