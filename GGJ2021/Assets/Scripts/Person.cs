@@ -55,6 +55,7 @@ public class Person : MonoBehaviour
 
         // Stop navigating
         // Stop listening to transports
+        PersonNavigator.follower.stopPerson();
         _animator.SetBool("IsWalking", false);
     }
 
