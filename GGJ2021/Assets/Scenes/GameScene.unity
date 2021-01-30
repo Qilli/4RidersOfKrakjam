@@ -9083,7 +9083,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b91d95d853aedb04989626ff2ad3e735, type: 2}
   - {fileID: 11400000, guid: 8d4546cac4b43c14c8fee9c172e71cd2, type: 2}
   - {fileID: 11400000, guid: e5a8f9c7be9eb9c4ea3965dfc437674b, type: 2}
-  _basicPersonPrefab: {fileID: 5752495575578609878, guid: 4ef387d7fee814847a4d09051fb1b182,
+  _basicPersonPrefab: {fileID: 819841964072459118, guid: 858ada346de8d784a8a1be79dc9f289a,
     type: 3}
   _randomizer: {fileID: 831032433640132441}
   _referenceDisplayer: {fileID: 2137180104}
