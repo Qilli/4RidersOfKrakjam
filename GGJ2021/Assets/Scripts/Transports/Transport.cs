@@ -96,7 +96,7 @@ public class Transport : MonoBehaviour
 
                 foreach (var p in persons)
                 {
-                    p.TransportHasArrived(_type);
+                    p.TransportHasArrived(_type, this);
                 }
 
                 if (_arrivalClip)

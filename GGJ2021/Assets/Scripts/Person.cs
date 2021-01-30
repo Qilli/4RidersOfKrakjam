@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public class Person : MonoBehaviour
 {
-    [Header("Prisoner Status")]
-    [SerializeField] bool _isPrisoner = false;
-
     [SerializeField] PrisonerReference _prisonerReference = null;
     [Range(0.0f, 100.0f)]
     [SerializeField] float _chanceToEnterTransport = 50;
@@ -25,10 +22,14 @@ public class Person : MonoBehaviour
 
     [Header("Runtime")]
     public bool HasLuggage = false; // Used for settings animator
+    [SerializeField] bool _isPrisoner = false;
     [SerializeField] bool _willTakeTransport = false;
+
+    public bool IsEscaped { get { return _isEscaped; } }
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
+    bool _isEscaped = false;
     Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
@@ -45,6 +46,13 @@ public class Person : MonoBehaviour
         SpawnAndParentLookElements(elements);
     }
 
+    internal void StopWalking()
+    {
+        // Stop navigating
+        // Stop listening to transports
+        // Go to some weird far away pos
+    }
+
     private void SpawnAndParentLookElements(List<GameObject> elements)
     {
         foreach(var e in elements)
@@ -53,6 +61,11 @@ public class Person : MonoBehaviour
 
             _personElements.Add(Instantiate(e, this.transform));
         }
+    }
+
+    internal void SetEscapeStatus()
+    {
+        _isEscaped = true;
     }
 
     private void Awake()
@@ -74,6 +87,7 @@ public class Person : MonoBehaviour
             }
         }
         else
+        if(!_isEscaped)
         {
             _willTakeTransport = true;
             GoToPlatform();
@@ -86,7 +100,7 @@ public class Person : MonoBehaviour
     {
         if (type != _type) return;
 
-        if(_willTakeTransport)
+        if(_willTakeTransport && !_isEscaped)
         {
             _transport = transport;
             BoardTransport();
@@ -96,12 +110,14 @@ public class Person : MonoBehaviour
     private void GoToPlatform()
     {
         // Move into designated position of waiting for transport NEAR it.
+        Debug.Log("Moving to platform");
     }
 
     private void BoardTransport()
     {
         // Some logic to navigate us INSIDE transport
         // Call Board transprot on transport when arrived
+        Debug.Log("Boarding");
         _transport.BoardTransport(this);
     }
 
