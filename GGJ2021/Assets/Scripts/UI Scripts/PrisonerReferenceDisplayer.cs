@@ -16,8 +16,6 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
 
     public void CreatePrisonerReferences(List<Person> prisoners)
     {
-        Debug.Log("Creating prisoner references: " + prisoners.Count);
-
         int iterator = 0;
 
         foreach(var prisoner in prisoners)

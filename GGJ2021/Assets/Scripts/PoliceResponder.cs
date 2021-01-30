@@ -23,6 +23,8 @@ public class PoliceResponder : MonoBehaviour
     [SerializeField] float _highThrowOffset = 1.0f;
     [SerializeField] float _lowThrowOffset = -1.0f;
 
+    [SerializeField] PrisonerEscapedDisplayer _prisonerEscapedCanvas = null;
+
     Person _lastCatchedPerson = null;
     float _knifeThrowingTimer = 0;
     bool _isPlayingMinigame = false;
@@ -100,7 +102,7 @@ public class PoliceResponder : MonoBehaviour
             p.gameObject.SetActive(false);
         }
 
-        Debug.Log("Ending");
+        _lastCatchedPerson.transform.position = new Vector3(-999, -999, 0);
     }
 
     private void Update()
@@ -118,7 +120,7 @@ public class PoliceResponder : MonoBehaviour
 
         if(deadPoliceman >= _policeMans.Count)
         {
-            Debug.Log("All policeman dead!");
+            _prisonerEscapedCanvas.gameObject.SetActive(true);
             foreach (var p in _policeMans)
             {
                 p.SetAlive();
@@ -153,9 +155,6 @@ public class PoliceResponder : MonoBehaviour
 
     private void Throw()
     {
-        Debug.Log("Throwing");
-
-        // Decide low or high throw
         var highThrow = UnityEngine.Random.Range(0, 100) > 50;
 
         var spawnPos = new Vector3(_catchingMinigamePersonPosition.position.x, _catchingMinigamePersonPosition.position.y + (highThrow ? _highThrowOffset : _lowThrowOffset));

@@ -40,8 +40,6 @@ public class PoliceMan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger enter: " + collision.gameObject.name);
-
         var person = collision.gameObject.GetComponent<Person>();
 
         if(person)
