@@ -182,15 +182,16 @@ MonoBehaviour:
 
     <color=black>How to PLAY</color>
 
-    WSAD  -> Move Camera
+    WSAD or move mouse to the
+    edge of the screen-> Move Camera
 
-    Left
-    mouse click on a suspects ->Choose who you want to catch
+    Left mouse click on a suspects ->Choose
+    who you want to catch
 
-    <color=black>In
-    a fight with a Criminal</color>
+    <color=black>In a fight with a Criminal</color>
 
-    W -> Jump
+    W
+    -> Jump
 
     S-> Dodge'
   m_isRightToLeft: 0
