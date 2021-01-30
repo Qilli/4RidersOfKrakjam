@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Person : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class Person : MonoBehaviour
     [Header("Other")]
     [SerializeField] PoliceResponder _policeResponder = null;
     [SerializeField] PositionType.PositionsType _type;
+
+    [SerializeField] AudioClip _clickedClip = null;
+
 
     public bool HasLuggage = false; // Used for settings animator
     public bool IsPrisoner { get { return _isPrisoner; } }
@@ -94,6 +98,9 @@ public class Person : MonoBehaviour
 
     private void OnMouseDown()
     {
+        var player = FindObjectOfType<AudioPlayer>();
+        player.PlayUIClick(_clickedClip);
+
         _confirmator.DisplayConfirmationPrompt(this);
     }
 

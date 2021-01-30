@@ -5095,6 +5095,8 @@ MonoBehaviour:
   _personElements: []
   _policeResponder: {fileID: 0}
   _type: 0
+  _clickedClip: {fileID: 8300000, guid: b3c8de69285a8834daeb0b33cbe51b8b, type: 3}
+  HasLuggage: 0
 --- !u!50 &4771956049220955308
 Rigidbody2D:
   serializedVersion: 4

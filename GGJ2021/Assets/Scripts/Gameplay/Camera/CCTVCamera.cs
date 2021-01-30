@@ -18,13 +18,16 @@ public class CCTVCamera : MonoBehaviour
     [SerializeField] float _minigameCameraOrtho = 10.0f;
 
     [SerializeField]
-    CCTVCameraBoundary boundary;  
+    CCTVCameraBoundary boundary;
+
+    [SerializeField] AudioClip _clip = null;
 
 
     public Transform Position { get => position; }
     public CCTVCameraBoundary Boundary { get => boundary; }
     public bool IsMinigameCamera { get => _isMinigameCamera; }
     public float MinigameCameraOrtho { get => _minigameCameraOrtho; }
+    public AudioClip CameraAudioClip { get => _clip; }
 
     private void Awake()
     {

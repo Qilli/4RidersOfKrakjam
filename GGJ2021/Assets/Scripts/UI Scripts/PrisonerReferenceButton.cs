@@ -16,17 +16,19 @@ public class PrisonerReferenceButton : MonoBehaviour
     [SerializeField] Person _prisoner = null;
 
     Camera _renderCam = null;
+    AudioPlayer _player = null;
 
     public PrisonerReference Reference { get { return _reference; } }
 
     ReferenceDetailsPanel _detailsPanel = null;
 
-    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel, Camera renderCam, Person prisoner)
+    public void Init(PrisonerReference reference, ReferenceDetailsPanel detailsPanel, Camera renderCam, Person prisoner, AudioPlayer player)
     {
         _detailsPanel = detailsPanel;
         _reference = reference;
         _renderCam = renderCam;
         _prisoner = prisoner;
+        _player = player;
     }
 
     public void DisplayDetails()
@@ -40,5 +42,10 @@ public class PrisonerReferenceButton : MonoBehaviour
         {
             _crossout.SetActive(true);
         }
+    }
+
+    public void PlayClickSound(AudioClip clip)
+    {
+        _player.PlayUIClick(clip);
     }
 }
