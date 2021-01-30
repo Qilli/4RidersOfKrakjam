@@ -21,7 +21,8 @@ public class TransportsManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] GameObject _arrivalPanel = null;
-    [SerializeField] Text _arrivalText = null; 
+    [SerializeField] Text _arrivalText = null;
+    [SerializeField] Text _arrivalTypeText = null;
 
     private void Start()
     {
@@ -68,6 +69,9 @@ public class TransportsManager : MonoBehaviour
     private void FeedArrivalTimer()
     {
         _arrivalText.text = (_arrivalThreshold - _arrivalTimer).ToString("F");
+
+        if(_transports.Count > 0)
+            _arrivalTypeText.text = _transports[0].NameToDisplay;
     }
 
     private void NotifyOfLastTransport()

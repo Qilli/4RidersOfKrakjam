@@ -14,6 +14,7 @@ public class Transport : MonoBehaviour
     [SerializeField] float _departureDelay = 5.0f;
     [SerializeField] MainGameManager _gameManager = null;
     [SerializeField] PositionType.PositionsType _type;
+    [SerializeField] string _nameToDisplay = string.Empty;
 
     [Header("Runtime")]
     [SerializeField] List<Person> _passengersOnBoard = new List<Person>();
@@ -27,6 +28,7 @@ public class Transport : MonoBehaviour
     protected bool _isArrived = false;
     protected bool _canDepart = false;
 
+    public string NameToDisplay { get { return _nameToDisplay; } }
     public bool IsDeparted { get { return _canDepart; } }
     public bool IsArrived { get { return _isArrived; } }
 
