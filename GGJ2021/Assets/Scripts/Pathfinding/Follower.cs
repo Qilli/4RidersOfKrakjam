@@ -51,13 +51,22 @@ public class Follower : MonoBehaviour
 	/// Follow the specified path.
 	/// </summary>
 	/// <param name="path">Path.</param>
-	public void Follow ( Path path )
+	public void Follow(Path path)
 	{
 		ended = false;
-		StopCoroutine ( "FollowPath" );
+		StopCoroutine("FollowPath");
 		m_Path = path;
-		transform.position = m_Path.nodes [ 0 ].transform.position;
-		StartCoroutine ( "FollowPath" );
+		transform.position = m_Path.nodes[0].transform.position;
+		StartCoroutine("FollowPath");
+	}
+
+
+	bool stoppedByBagietas = false;
+	public void stopPerson()
+    {
+		StopCoroutine("FollowPath");
+		p.setWalking(false);
+		stoppedByBagietas = true;
 	}
 
 	public bool ended = false;
@@ -96,7 +105,7 @@ public class Follower : MonoBehaviour
 
 	void Update ()
 	{
-		if ( m_Current != null )
+		if ( m_Current != null && !stoppedByBagietas)
 		{
 			transform.position = Vector3.MoveTowards ( transform.position, m_Current.transform.position, m_Speed );
 		}

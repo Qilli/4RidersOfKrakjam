@@ -152,6 +152,11 @@ public class Person : MonoBehaviour
 
     }
 
+    public void setWalking(bool status)
+    {
+        _animator.SetBool("IsWalking", status);
+    }
+
     private void OnMouseDown()
     {
         var player = FindObjectOfType<AudioPlayer>();
