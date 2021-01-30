@@ -140,7 +140,11 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (UsedCCTVCamera.IsMinigameCamera) return;
+        if (UsedCCTVCamera.IsMinigameCamera)
+        {
+            Camera.main.orthographicSize = UsedCCTVCamera.MinigameCameraOrtho;
+            return;
+        }
 
 
         handleScroll();

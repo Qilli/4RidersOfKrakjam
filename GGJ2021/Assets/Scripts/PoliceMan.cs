@@ -4,6 +4,7 @@ public class PoliceMan : MonoBehaviour
 {
     [SerializeField] Transform _startingPos = null;
     [SerializeField] Transform _target = null;
+    [SerializeField] PoliceResponder _responder = null;
 
     [SerializeField] float _speed = 1.0f;
 
@@ -31,13 +32,10 @@ public class PoliceMan : MonoBehaviour
         // Detect being hit with projectile
 
         Debug.Log("Trigger enter: " + collision.gameObject.name);
-        // Detect catching that guy
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Detect being hit with projectile
-        Debug.Log("Collision enter: " + collision.gameObject.name);
-        // Detect catching that guy 
+        var person = collision.gameObject.GetComponent<Person>();
+
+        if(person)
+            _responder.PersonCaughtByPolice(person);
     }
 }

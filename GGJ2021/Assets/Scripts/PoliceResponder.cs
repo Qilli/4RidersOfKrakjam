@@ -68,7 +68,7 @@ public class PoliceResponder : MonoBehaviour
 
         Debug.Log("Starting");
 
-        Invoke(nameof(EndCatchingMinigame), 10);
+        //Invoke(nameof(EndCatchingMinigame), 10);
     }
 
     private void EndCatchingMinigame()
@@ -98,6 +98,15 @@ public class PoliceResponder : MonoBehaviour
         // Fire some kind of bullets
 
         // Allow dodging 
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            // Jump up
+        }
+        else
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            // Jump down
+        }
 
         // Track result
     }

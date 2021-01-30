@@ -15,6 +15,7 @@ public class CCTVCamera : MonoBehaviour
 
     Transform position;
     [SerializeField] bool _isMinigameCamera = false;
+    [SerializeField] float _minigameCameraOrtho = 10.0f;
 
     [SerializeField]
     CCTVCameraBoundary boundary;  
@@ -23,6 +24,7 @@ public class CCTVCamera : MonoBehaviour
     public Transform Position { get => position; }
     public CCTVCameraBoundary Boundary { get => boundary; }
     public bool IsMinigameCamera { get => _isMinigameCamera; }
+    public float MinigameCameraOrtho { get => _minigameCameraOrtho; }
 
     private void Awake()
     {
