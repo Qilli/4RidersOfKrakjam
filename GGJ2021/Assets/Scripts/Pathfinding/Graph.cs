@@ -30,10 +30,29 @@ public class Graph : MonoBehaviour
 		}
 	}
 
-    private void Awake()
+	public void findPOIIn()
+    {
+
+    }
+
+	public List<Node> findPOISFor(PositionType.PositionsType location)
+    {
+		List<Node> POIS = new List<Node>();
+		for(int i = 0; i < m_Nodes.Count; i += 1)
+        {
+			if(m_Nodes[i].type.positionType == location && m_Nodes[i].type.TypeOfPoint == PointType.Type.POI)
+            {
+				POIS.Add(m_Nodes[i]);
+            }
+        }
+		return POIS;
+    }
+
+	private void Awake()
     {
 		m_Nodes = new List<Node>(GameObject.FindObjectsOfType<Node>());
 	}
+
     private void Start()
     {
         for(int i = 0; i < m_Nodes.Count; i += 1)

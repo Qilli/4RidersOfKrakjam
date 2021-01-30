@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da21059adbf17f6428b63b7d3522f89e, type: 3}
-  m_Name: DefaultPoint
+  m_Script: {fileID: 11500000, guid: 9fab31990d2e8234294c05cc761910ba, type: 3}
+  m_Name: POI_POINT
   m_EditorClassIdentifier: 
   positionType: 0
   TypeOfPoint: 0
-  waitTime: 5
+  waitTime: 15
   randomizeTime: 1
-  minTimeWait: -5
-  maxTimeWait: 5
+  minTimeWait: 5
+  maxTimeWait: 15
   finalNode: 0
-  maxPersons: 999
+  maxPersons: 1

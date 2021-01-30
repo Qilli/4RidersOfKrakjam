@@ -16,6 +16,9 @@ public class Node : MonoBehaviour
     [SerializeField]
     protected List<Node> m_Connections = new List<Node>();
 
+    [SerializeField]
+    public List<Person> personsQueued = new List<Person>();
+
     public enum NodeType
     {
         Standard,
@@ -53,6 +56,31 @@ public class Node : MonoBehaviour
             n.connections.Add(this);
         }
     }
+
+    [ContextMenu("Pobierz Node")]
+    public Node getRandomConnectedNodeWithoutFullPOI()
+    {
+        List<Node> availableNodes = new List<Node>();
+
+        for(int i = 0; i < connections.Count; i += 1)
+        {
+            if(connections[i].type.TypeOfPoint != PointType.Type.POI || connections[i].personsQueued.Count < connections[i].type.maxPersons)
+            {
+                availableNodes.Add(connections[i]);
+            }
+        }
+
+        //Debug.Log(personsQueued.Count + " < " + connections[i].type.maxPersons);
+        Debug.Log(availableNodes.Count);
+        //randomize
+        if (availableNodes.Count <= 0)
+        {
+            return null;
+        }
+
+        return availableNodes[Random.Range(0, availableNodes.Count)];
+    }
+
 
     public Node getRandomConnectedNode()
     {

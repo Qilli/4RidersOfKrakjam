@@ -25,6 +25,12 @@ public class Follower : MonoBehaviour
 
 	Person p = null;
 
+	/// <summary>
+	/// Absolutny mode do ktorego udadza sie postacie po skonczeniu aktualnej sciezki
+	/// </summary>
+	Node importantNode = null;
+	bool finalNodeComing = false;
+
 	void Start ()
 	{
 		//m_Path = m_Graph.GetShortestPath ( m_Start, m_End );
@@ -68,6 +74,7 @@ public class Follower : MonoBehaviour
 		p.setWalking(false);
 		stoppedByBagietas = true;
 	}
+
 
 	public bool ended = false;
 

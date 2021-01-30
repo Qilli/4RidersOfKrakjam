@@ -13,34 +13,53 @@ public class PointType : ScriptableObject
         EXIT
     }
 
+    public PositionType.PositionsType positionType;
+
     public Type TypeOfPoint;
 
     public float waitTime = 0f;
     [SerializeField]
-    bool randomizeTime = true;
+    protected bool randomizeTime = true;
     public float minTimeWait = -5f;
     public float maxTimeWait = 5f;
 
+    /// <summary>
+    /// Postać zatrzyma się na tym node do konca gry
+    /// </summary>
+    public bool finalNode = false;
 
-    public void onEnter(Person p)
+    /// <summary>
+    /// Maksymalna ilość osób mogąca oczekiwać w punkcie
+    /// </summary>
+    public int maxPersons = 1;
+    
+
+
+    public virtual void onEnter(Person p)
     {
         //toimplement
         //p.setWalking(false) ;
         Debug.Log("Postać przeszła przez punkt");
+
     }
 
-    public void onFinished(Person p)
+    public virtual void onFinished(Person p)
     {
         //toimplement
         p.setWalking(false);
+        /*
+        if (!p.PersonNavigator.currentNode.personsQueued.Contains(p))
+            p.PersonNavigator.currentNode.personsQueued.Add(p);
         Debug.Log("Postać zakonczyla sciezke w punkcie");
+        */
     }
 
-    public void onExit(Person p)
+    public virtual void onExit(Person p)
     {
         //toimplement
         p.setWalking(true);
         Debug.Log("Postać wyszła z punktu");
+        p.PersonNavigator.currentNode.personsQueued.Remove(p);
     }
 
     float getRandomTime()

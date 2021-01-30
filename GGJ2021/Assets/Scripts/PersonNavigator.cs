@@ -10,7 +10,7 @@ public class PersonNavigator : MonoBehaviour
 {
     public Follower follower;
     [SerializeField]
-    Node currentNode;
+   public Node currentNode;
     public Person p;
 
 
@@ -19,6 +19,20 @@ public class PersonNavigator : MonoBehaviour
 
     float waitTimeInNextPoint = 0f;
     float timer = 0f;
+
+    /// <summary>
+    /// Absolutny mode do ktorego udadza sie postacie po skonczeniu aktualnej sciezki
+    /// </summary>
+    Node importantNode = null;
+    bool finalNodeComing = false;
+
+
+    void setImportantNode(Node n)
+    {
+        Debug.Log("Important node changed");
+        importantNode = n;
+    }
+
 
     private void Awake()
     {
@@ -40,6 +54,8 @@ public class PersonNavigator : MonoBehaviour
         }
 
         //currentNode.type.onExit(p);
+
+        destination.personsQueued.Add(p);
         waitTimeInNextPoint = destination.type.GetTimeWait();
         follower.destinationChanged(currentNode, destination);
     }
@@ -64,7 +80,7 @@ public class PersonNavigator : MonoBehaviour
 
         if(currentNode != null && !didOnce)
         {
-            setDestination(currentNode.getRandomConnectedNode());
+            setDestination(currentNode.getRandomConnectedNodeWithoutFullPOI());
             didOnce = true;
         }
 
@@ -88,8 +104,17 @@ public class PersonNavigator : MonoBehaviour
             if(nodesLength > 0)
             {
                 Debug.Log("randomize new node");
-                int rand = Random.Range(0, nodesLength);
-                setDestination(currentNode.connections[rand]);
+                if(importantNode != null && !finalNodeComing)
+                {
+                    setDestination(importantNode);
+                    finalNodeComing = true;
+                }
+                else
+                {
+                    int rand = Random.Range(0, nodesLength);
+                    setDestination(currentNode.connections[rand]);
+                }
+
                 timer = 0;
             }
 
@@ -102,5 +127,15 @@ public class PersonNavigator : MonoBehaviour
         }
         //Debug.Log(currentNode.connections.Count);
     }
+
+    //debug
+    [SerializeField]
+    Node endNode;
+    [ContextMenu("go to end node")]
+    public void goToEndNode()
+    {
+        setImportantNode(endNode);
+    }
+    //end debug
 
 }

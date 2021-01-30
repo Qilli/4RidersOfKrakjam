@@ -124,6 +124,12 @@ public class Person : MonoBehaviour
         _animator.SetBool("IsWalking", status);
     }
 
+
+    public void setSitting(bool status)
+    {
+        _animator.SetBool("IsSitting", status);
+    }
+
     private void OnMouseDown()
     {
         var player = FindObjectOfType<AudioPlayer>();
