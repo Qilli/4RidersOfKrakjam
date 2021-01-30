@@ -23,7 +23,6 @@ public class PersonNavigator : MonoBehaviour
     private void Awake()
     {
         follower = gameObject.GetComponent<Follower>();
-        //follower.
     }
 
 
@@ -72,10 +71,12 @@ public class PersonNavigator : MonoBehaviour
         if (follower.ended)
         {
             currentNode = follower.lastNode;
+            //p.setWalking(false);
         }
         
         if(follower.ended)
         {
+           // p.setWalking(false);
             timer += Time.deltaTime;
             if(timer < waitTimeInNextPoint)
                 return;
