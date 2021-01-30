@@ -6,6 +6,7 @@ public class Person : MonoBehaviour
 {
     [Header("Prisoner Status")]
     [SerializeField] bool _isPrisoner = false;
+
     [SerializeField] PrisonerReference _prisonerReference = null;
     [Range(0.0f, 100.0f)]
     [SerializeField] float _chanceToEnterTransport = 50;
@@ -18,12 +19,13 @@ public class Person : MonoBehaviour
     [SerializeField] PoliceResponder _policeResponder = null;
     [SerializeField] PositionType.PositionsType _type;
 
+    public bool HasLuggage = false; // Used for settings animator
     public bool IsPrisoner { get { return _isPrisoner; } }
     public PrisonerReference PrisonerReference { get { return _prisonerReference; } }
 
+    Animator _animator = null;
     Vector3 _startingPosition = new Vector3();
     CatchingConfirmator _confirmator = null;
-
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -49,6 +51,7 @@ public class Person : MonoBehaviour
     private void Awake()
     {
         _policeResponder = FindObjectOfType<PoliceResponder>();
+        _animator = GetComponent<Animator>();
     }
 
     internal void TransportHasArrived(PositionType.PositionsType type)
@@ -83,6 +86,10 @@ public class Person : MonoBehaviour
     private void Start()
     {
         _startingPosition = this.transform.position;
+
+        if (HasLuggage)
+            _animator.SetBool("HasSuitcase", true);
+
     }
 
     private void OnMouseDown()
@@ -121,8 +128,6 @@ public class Person : MonoBehaviour
         Destroy(copy.GetComponent<Person>());
         Destroy(copy.GetComponent<BoxCollider2D>());
         Destroy(copy.GetComponent<Animator>());
-
-        // Disable decorations
 
         var components = copy.GetComponentsInChildren<BodyPart>();
 

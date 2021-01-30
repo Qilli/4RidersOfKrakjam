@@ -31,9 +31,17 @@ public class PrisonerReferenceDisplayer : MonoBehaviour
             portrait.transform.position = new Vector3(renderCam.transform.position.x, renderCam.transform.position.y + _camYOffset, 0);
 
             var newButton = Instantiate(_buttonPrefab, this.transform);
-            newButton.Init(prisoner.PrisonerReference, _detailsPanel, renderCam);
+            newButton.Init(prisoner.PrisonerReference, _detailsPanel, renderCam, prisoner);
             newButton.GetComponent<RawImage>().texture = renderCam.targetTexture;
             _buttonsSpawned.Add(newButton);
+        }
+    }
+
+    public void MarkPersonAsCaught(Person caughtPrisoner)
+    {
+        foreach(var b in _buttonsSpawned)
+        {
+            b.MarkAsCaught(caughtPrisoner);
         }
     }
 }

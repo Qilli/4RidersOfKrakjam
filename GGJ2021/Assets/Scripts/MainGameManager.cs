@@ -11,6 +11,7 @@ public class MainGameManager : MonoBehaviour
 {
     [SerializeField] int _civiliansCaughtThreshold = 5;
     [SerializeField] GameSummaryDisplayer _summaryDisplayer = null;
+    [SerializeField] PrisonerReferenceDisplayer _referenceDisplayer = null;
 
     [Header("Runtime values")]
     [SerializeField] int _spawnedPrisoners = 0;
@@ -43,6 +44,7 @@ public class MainGameManager : MonoBehaviour
         if(person.IsPrisoner)
         {
             _caughtPrisoners++;
+            _referenceDisplayer.MarkPersonAsCaught(person);
         }
         else
         {

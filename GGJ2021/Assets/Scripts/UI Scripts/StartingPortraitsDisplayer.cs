@@ -9,8 +9,8 @@ public class StartingPortraitsDisplayer : MonoBehaviour
 {
     [SerializeField] List<PrisonerReference> _references = new List<PrisonerReference>();
 
-    public void DisplayStartingPortraits(List<PrisonerReference> references)
+    public void DisplayStartingPortraits(List<Person> prisoners)
     {
-        _references = references;
+
     }
 }

@@ -6700,6 +6700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _civiliansCaughtThreshold: 5
   _summaryDisplayer: {fileID: 700341994}
+  _referenceDisplayer: {fileID: 2137180104}
   _spawnedPrisoners: 0
   _caughtPrisoners: 0
   _caughtCivilians: 0
@@ -10530,7 +10531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _civiliansMinMax: {x: 0, y: 0}
-  _prisonersMinMax: {x: 3, y: 3}
+  _prisonersMinMax: {x: 9, y: 9}
   _spawnPoints:
   - {fileID: 23219460}
   - {fileID: 1595216261}
@@ -10552,6 +10553,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ef68414773f515408075e7dadd7db03, type: 2}
   - {fileID: 11400000, guid: 73ed5f5a4df9a99428343bd27ff0b4c6, type: 2}
   - {fileID: 11400000, guid: 93a38984a1167eb40bfc1e73c6a92f71, type: 2}
+  - {fileID: 11400000, guid: 4a55be660fce7c34aa892477054851f9, type: 2}
+  - {fileID: 11400000, guid: 61d7c49607e16cb4b96723bcf2d6e1f4, type: 2}
   _specialAttributes:
   - {fileID: 11400000, guid: 43c921481aabf0344befc6301a90b706, type: 2}
   - {fileID: 11400000, guid: b91d95d853aedb04989626ff2ad3e735, type: 2}
