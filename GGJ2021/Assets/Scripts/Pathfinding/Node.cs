@@ -48,9 +48,15 @@ public class Node : MonoBehaviour
 
     private void Start()
     {
-        foreach(Node n in connections)
+/*        foreach(Node n in connections)
         {
             n.connections.Add(this);
+        }*/
+
+        for(int i = 0; i < connections.Count; i++)
+        {
+            if(!connections[i].connections.Contains(this))
+                connections[i].connections.Add(this);
         }
     }
 

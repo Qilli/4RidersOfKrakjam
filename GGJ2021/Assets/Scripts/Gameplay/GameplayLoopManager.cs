@@ -14,20 +14,19 @@ public class GameplayLoopManager : MonoBehaviour
     public bool checkEvent = false;
     void Start()
     {
-        Debug.Log(LoseEvent);
         LoseEvent.Register(LoseGame);
         WinEvent.Register(WinGame);
     }  
 
     public void LoseGame()
     {
-        Debug.Log("You've lost! (baranie jebany)");
+        //Debug.Log("You've lost! (baranie jebany)");
         SceneManager.LoadScene(2);
     }
 
     public void WinGame()
     {
-        Debug.Log("CTZGJ");
+        //ebug.Log("CTZGJ");
         SceneManager.LoadScene(3);
     }
 

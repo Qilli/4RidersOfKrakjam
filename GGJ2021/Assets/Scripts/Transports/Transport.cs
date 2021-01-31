@@ -31,6 +31,7 @@ public class Transport : MonoBehaviour
     public string NameToDisplay { get { return _nameToDisplay; } }
     public bool IsDeparted { get { return _canDepart; } }
     public bool IsArrived { get { return _isArrived; } }
+    public PositionType.PositionsType Type { get { return _type; } }
 
     private void Awake()
     {

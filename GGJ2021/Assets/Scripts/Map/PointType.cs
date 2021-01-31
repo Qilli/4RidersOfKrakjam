@@ -26,21 +26,21 @@ public class PointType : ScriptableObject
     {
         //toimplement
         //p.setWalking(false) ;
-        Debug.Log("Postać przeszła przez punkt");
+        //Debug.Log("Postać przeszła przez punkt");
     }
 
     public void onFinished(Person p)
     {
         //toimplement
         p.setWalking(false);
-        Debug.Log("Postać zakonczyla sciezke w punkcie");
+        //Debug.Log("Postać zakonczyla sciezke w punkcie");
     }
 
     public void onExit(Person p)
     {
         //toimplement
         p.setWalking(true);
-        Debug.Log("Postać wyszła z punktu");
+        //Debug.Log("Postać wyszła z punktu");
     }
 
     float getRandomTime()

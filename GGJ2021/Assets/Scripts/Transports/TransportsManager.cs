@@ -21,13 +21,27 @@ public class TransportsManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] GameObject _arrivalPanel = null;
-    [SerializeField] Text _arrivalText = null;
-    [SerializeField] Text _arrivalTypeText = null;
+    [SerializeField] Text _trainArrivalText = null;
+    [SerializeField] Text _busArrivalText = null;
+    [SerializeField] Text _planeArrivalText = null;
+
+    bool _countTrainArrival = false;
+    bool _countBusArrival = false;
+    bool _countPlaneArrival = false;
+
+    [SerializeField] float _busTimer = 0;
+    [SerializeField] float _busThreshold = 0;
+
+    [SerializeField] float _trainTimer = 0;
+    [SerializeField] float _trainThreshold = 0;
+
+    [SerializeField] float _planeTimer = 0;
+    [SerializeField] float _planeThreshold = 0;
 
     private void Start()
     {
         ShuffleTransports();
-        SetNewTimer();
+        SetNewTimer(_transports[0].Type);
     }
 
     private void ShuffleTransports()
@@ -51,27 +65,88 @@ public class TransportsManager : MonoBehaviour
 
         if (_arrivalTimer > _arrivalThreshold && _transports.Count > 0)
         {
-            SetNewTimer();
+            SetNewTimer(_transports[0].Type);
             _transports[0].StartArriving();
             _transports.RemoveAt(0);
         }
 
-        if(_transports.Count == 0)
-        {
-            _arrivalPanel.SetActive(false);
-        }
-
         NotifyOfLastTransport();
 
-        FeedArrivalTimer();
+        FeedArrivalTimers();
     }
 
-    private void FeedArrivalTimer()
+    private void SetTransportTimer(PositionType.PositionsType type)
     {
-        _arrivalText.text = (_arrivalThreshold - _arrivalTimer).ToString("F");
+        Debug.Log("Setting arrival timer for: " + type);
 
-        if(_transports.Count > 0)
-            _arrivalTypeText.text = _transports[0].NameToDisplay;
+        if(type == PositionType.PositionsType.Airport)
+        {
+            _countPlaneArrival = true;
+            _planeThreshold = _arrivalThreshold + 10;
+        }
+
+        if(type == PositionType.PositionsType.Bus)
+        {
+            _countBusArrival = true;
+            _busThreshold = _arrivalThreshold + 10;
+        }
+
+        if(type == PositionType.PositionsType.Train)
+        {
+            _countTrainArrival = true;
+            _trainThreshold = _arrivalThreshold + 10;
+        }
+    }
+
+    private void FeedArrivalTimers()
+    {
+        if(_countPlaneArrival)
+        {
+            _planeTimer += Time.deltaTime;
+            _planeArrivalText.text = (_planeThreshold - _planeTimer).ToString("F") + "s";
+        }
+        else
+        {
+            _planeArrivalText.text = "DELAYED";
+        }
+
+        if(_countBusArrival)
+        {
+            _busTimer += Time.deltaTime;
+            _busArrivalText.text = (_busThreshold - _busTimer).ToString("F") + "s";
+        }
+        else
+        {
+            _busArrivalText.text = "DELAYED";
+        }
+
+        if (_countTrainArrival)
+        {
+            _trainTimer += Time.deltaTime;
+            _trainArrivalText.text = (_trainThreshold - _trainTimer).ToString("F") + "s";
+        }
+        else
+        {
+            _trainArrivalText.text = "DELAYED";
+        }
+
+        if(_planeTimer > _planeThreshold && _countPlaneArrival)
+        {
+            _countPlaneArrival = false;
+            _planeArrivalText.text = "NO ARRIVALS SOON";
+        }
+
+        if (_trainTimer > _trainThreshold && _countTrainArrival)
+        {
+            _countTrainArrival = false;
+            _trainArrivalText.text = "NO ARRIVALS SOON";
+        }
+
+        if (_busTimer > _busThreshold && _countBusArrival)
+        {
+            _countBusArrival = false;
+            _busArrivalText.text = "NO ARRIVALS SOON";
+        }
     }
 
     private void NotifyOfLastTransport()
@@ -82,7 +157,7 @@ public class TransportsManager : MonoBehaviour
         }
     }
 
-    private void SetNewTimer()
+    private void SetNewTimer(PositionType.PositionsType type)
     {
         if(_minMaxArrivalInterval.Count > 0)
         {
@@ -90,6 +165,8 @@ public class TransportsManager : MonoBehaviour
             _minMaxArrivalInterval.RemoveAt(0);
             _arrivalTimer = 0;
             _arrivalThreshold = UnityEngine.Random.Range(newMinMax.x, newMinMax.y);
+            SetTransportTimer(type);
+
         }
         else
         {
