@@ -150,6 +150,7 @@ public class Person : MonoBehaviour
         // Call Board transprot on transport when arrived
         Debug.Log("Boarding");
         _transport.BoardTransport(this);
+        GTFO();
     }
 
     private void Start()
