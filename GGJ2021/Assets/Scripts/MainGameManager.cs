@@ -17,12 +17,15 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] int _spawnedPrisoners = 0;
     [SerializeField] int _caughtPrisoners = 0;
     [SerializeField] int _caughtCivilians = 0;
+    [SerializeField] int _escapedPrisoners = 0;
     [SerializeField] List<Person> _caughtPersons = new List<Person>();
     [SerializeField] Transport _lastTransport = null;
 
     [Header("UI Elements")]
     [SerializeField] Text _prisonersToCatchText = null;
     [SerializeField] Text _caughtPersonsText = null;
+
+
 
     private void Awake()
     {
@@ -59,7 +62,7 @@ public class MainGameManager : MonoBehaviour
     internal void NotifyPrisonerEscapedWithTransport(Person person, Transport transport)
     {
         _referenceDisplayer.MarkAsEscaped(person);
-
+        _escapedPrisoners++;
         Debug.Log("Notified escaped prisoner using: " + transport.name);
         person.SetEscapeStatus();
         person.GTFO();
@@ -68,6 +71,7 @@ public class MainGameManager : MonoBehaviour
     internal void NotifyPrisonerEscapedPolice(Person person)
     {
         _referenceDisplayer.MarkAsEscaped(person);
+        _escapedPrisoners++;
         Debug.Log("Prsioner escaped from police forces");
         person.SetEscapeStatus();
         person.GTFO();
@@ -98,6 +102,12 @@ public class MainGameManager : MonoBehaviour
         if(_lastTransport && _lastTransport.IsDeparted)
         {
             Debug.Log("Last transport departed");
+            return true;
+        }
+
+        if (_escapedPrisoners + _caughtPrisoners >= _spawnedPrisoners)
+        {
+            Debug.Log("All escaped or caught");
             return true;
         }
 
