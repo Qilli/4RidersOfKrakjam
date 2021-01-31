@@ -7,6 +7,7 @@ public class AudioPlayer : MonoBehaviour
 {
     [SerializeField] AudioSource _ambientAudioSource = null;
     [SerializeField] AudioSource _uiClickAudioSource = null;
+    [SerializeField] AudioSource _cameraMovementSource = null;
 
     public void PlayAmbientSound(AudioClip clip)
     {
@@ -31,5 +32,22 @@ public class AudioPlayer : MonoBehaviour
         newAudioSource.loop = false;
         newAudioSource.clip = announcmentsClip;
         newAudioSource.Play();
+    }
+
+    internal void PlayCameraZoomingSound(AudioClip clip)
+    {
+        var newAudioSource = Instantiate(_cameraMovementSource, this.transform);
+
+        newAudioSource.loop = false;
+        newAudioSource.clip = clip;
+        newAudioSource.Play();
+    }
+
+    internal void PlayCameraMovingSound(AudioClip movingClip)
+    {
+        if (_cameraMovementSource.isPlaying && movingClip) return;
+
+        _cameraMovementSource.clip = movingClip;
+        _cameraMovementSource.Play();
     }
 }
