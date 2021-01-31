@@ -141,14 +141,12 @@ public class Person : MonoBehaviour
     private void GoToPlatform()
     {
         // Move into designated position of waiting for transport NEAR it.
-        Debug.Log("Moving to platform");
     }
 
     private void BoardTransport()
     {
         // Some logic to navigate us INSIDE transport
         // Call Board transprot on transport when arrived
-        Debug.Log("Boarding");
         _transport.BoardTransport(this);
         GTFO();
     }

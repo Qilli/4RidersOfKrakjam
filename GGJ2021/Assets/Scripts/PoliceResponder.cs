@@ -109,7 +109,7 @@ public class PoliceResponder : MonoBehaviour
 
     private void Update()
     {
-        if (!_isPlayingMinigame) return;
+/*        if (!_isPlayingMinigame) return;
 
         int deadPoliceman = 0;
         foreach (var p in _policeMans)
@@ -153,7 +153,7 @@ public class PoliceResponder : MonoBehaviour
         {
             Throw();
             _knifeThrowingTimer = 0.0f;
-        }
+        }*/
     }
 
     private void Throw()

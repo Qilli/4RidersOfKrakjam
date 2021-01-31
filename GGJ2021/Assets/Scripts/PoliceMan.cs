@@ -34,8 +34,10 @@ public class PoliceMan : MonoBehaviour
     private void OnEnable()
     {
         var animator = GetComponentInChildren<Animator>();
-        animator.SetBool("IsWalking", true);
-        animator.SetFloat("Speed", _animRunSpeed);
+/*        animator.SetBool("IsWalking", true);
+        animator.SetFloat("Speed", _animRunSpeed);*/
+
+        animator.SetBool("IsRunning", true);
 
         this.transform.position = _startingPos.transform.position;
     }

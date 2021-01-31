@@ -168,7 +168,6 @@ public class TransportsManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Out of timers");
             // End game when this transport leaves
         }
     }

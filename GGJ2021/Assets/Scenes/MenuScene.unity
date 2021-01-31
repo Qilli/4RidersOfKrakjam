@@ -188,12 +188,7 @@ MonoBehaviour:
     Left mouse click on a suspects ->Choose
     who you want to catch
 
-    <color=black>In a fight with a Criminal</color>
-
-    W
-    -> Jump
-
-    S-> Dodge'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f1bfaad6336497489ba6cc6fd8ef79f, type: 2}
   m_sharedMaterial: {fileID: -5762643124950999153, guid: 2f1bfaad6336497489ba6cc6fd8ef79f,
