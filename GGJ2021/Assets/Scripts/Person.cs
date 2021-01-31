@@ -50,6 +50,13 @@ public class Person : MonoBehaviour
         SpawnAndParentLookElements(elements);
     }
 
+    internal void GTFO()
+    {
+        StopWalking();
+        _animator.SetBool("IsWalking", false);
+        this.transform.position = new Vector3(9999, 9999, 0);
+    }
+
     internal void StopWalking()
     {
 

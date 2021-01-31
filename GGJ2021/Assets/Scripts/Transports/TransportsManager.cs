@@ -77,8 +77,6 @@ public class TransportsManager : MonoBehaviour
 
     private void SetTransportTimer(PositionType.PositionsType type)
     {
-        Debug.Log("Setting arrival timer for: " + type);
-
         if(type == PositionType.PositionsType.Airport)
         {
             _countPlaneArrival = true;

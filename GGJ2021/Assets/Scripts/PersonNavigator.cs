@@ -87,7 +87,6 @@ public class PersonNavigator : MonoBehaviour
             int nodesLength = currentNode.connections.Count;
             if(nodesLength > 0)
             {
-                Debug.Log("randomize new node");
                 int rand = Random.Range(0, nodesLength);
                 setDestination(currentNode.connections[rand]);
                 timer = 0;

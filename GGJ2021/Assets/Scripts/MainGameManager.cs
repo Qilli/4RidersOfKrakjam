@@ -51,6 +51,7 @@ public class MainGameManager : MonoBehaviour
             _caughtCivilians++;
         }
 
+        person.GTFO();
         person.StopWalking();
         _caughtPersons.Add(person);
     }
@@ -61,12 +62,15 @@ public class MainGameManager : MonoBehaviour
 
         Debug.Log("Notified escaped prisoner using: " + transport.name);
         person.SetEscapeStatus();
+        person.GTFO();
     }
 
     internal void NotifyPrisonerEscapedPolice(Person person)
     {
+        _referenceDisplayer.MarkAsEscaped(person);
         Debug.Log("Prsioner escaped from police forces");
         person.SetEscapeStatus();
+        person.GTFO();
     }
 
     private void Update()
