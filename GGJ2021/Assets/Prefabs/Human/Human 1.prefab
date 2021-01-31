@@ -5008,7 +5008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a777575c7ea9dab4682ac59a868066ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPrisoner: 0
   _prisonerReference: {fileID: 0}
   _chanceToEnterTransport: 50
   _prisonColor: {r: 1, g: 0.47420034, b: 0, a: 1}
@@ -5017,7 +5016,10 @@ MonoBehaviour:
   _type: 0
   _clickedClip: {fileID: 8300000, guid: b3c8de69285a8834daeb0b33cbe51b8b, type: 3}
   HasLuggage: 0
+  _isPrisoner: 0
+  _willTakeTransport: 0
   PersonNavigator: {fileID: 0}
+  ExitNodes: []
 --- !u!50 &4771956049220955308
 Rigidbody2D:
   serializedVersion: 4
@@ -5103,6 +5105,10 @@ MonoBehaviour:
   m_Path:
     m_Nodes: []
   lastNode: {fileID: 0}
+  minSpeedRange: 0.005
+  maxSpeedRange: 0.01
+  rushSpeed: 0.0125
+  finalNodeComing: 0
   ended: 0
 --- !u!114 &4589470065820958473
 MonoBehaviour:
@@ -5120,6 +5126,7 @@ MonoBehaviour:
   currentNode: {fileID: 0}
   p: {fileID: 0}
   gameplayPerson: 0
+  endNode: {fileID: 0}
 --- !u!1 &8924228594908672123
 GameObject:
   m_ObjectHideFlags: 0

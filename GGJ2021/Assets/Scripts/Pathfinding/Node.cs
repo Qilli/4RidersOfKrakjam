@@ -62,17 +62,15 @@ public class Node : MonoBehaviour
     {
         List<Node> availableNodes = new List<Node>();
 
-        for(int i = 0; i < connections.Count; i += 1)
+        for (int i = 0; i < connections.Count; i += 1)
         {
-            Debug.Log(connections[i].type);
-            if(connections[i].type.TypeOfPoint != PointType.Type.POI || connections[i].personsQueued.Count < connections[i].type.maxPersons)
+            if (connections[i].type.TypeOfPoint != PointType.Type.POI || connections[i].personsQueued.Count < connections[i].type.maxPersons || connections[i].type.TypeOfPoint != PointType.Type.EXIT)
             {
                 availableNodes.Add(connections[i]);
             }
         }
 
         //Debug.Log(personsQueued.Count + " < " + connections[i].type.maxPersons);
-        Debug.Log(availableNodes.Count);
         //randomize
         if (availableNodes.Count <= 0)
         {

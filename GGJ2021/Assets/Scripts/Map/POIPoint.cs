@@ -18,7 +18,6 @@ public class POIPoint : PointType
         //toimplement
         p.setWalking(false);
         p.setSitting(true);
-        Debug.Log("Postać w POI, Siedzi");
     }
 
     public override void onExit(Person p)
@@ -27,7 +26,6 @@ public class POIPoint : PointType
         //toimplement
         p.setWalking(true);
         p.setSitting(false);
-        Debug.Log("Postać wyszła z POI");
     }
 
 }

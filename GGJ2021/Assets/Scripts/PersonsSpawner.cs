@@ -35,6 +35,9 @@ public class PersonsSpawner : MonoBehaviour
     [SerializeField] Transform _civiliansParent = null;
     [SerializeField] Transform _prisonersParent = null;
 
+    [Header("Exit Points")]
+    [SerializeField] List<Node> ExitNodes = new List<Node>();
+
     int _civiliansAmount = -1;
     int _prisonersAmount = -1;
 
@@ -42,7 +45,17 @@ public class PersonsSpawner : MonoBehaviour
 
     private void Awake()
     {
-        _spawnPoints = new List<PositionType>(GameObject.FindObjectsOfType<PositionType>());
+        PositionType[] posTypes = GameObject.FindObjectsOfType<PositionType>();
+        _spawnPoints = new List<PositionType>();
+
+        for (int i = 0; i < posTypes.Length; i += 1)
+        {
+            if (!posTypes[0].BlockSpawn)
+            {
+                _spawnPoints.Add(posTypes[i]);
+            }
+        }
+
 
         Time.timeScale = 1;
         RandomizePersonsAmounts();
@@ -80,11 +93,20 @@ public class PersonsSpawner : MonoBehaviour
             newCivilian.gameObject.name = "Civilian " + i;
             newCivilian.SetConfirmator(_confirmator);
             newCivilian.SetPositionType(posToSpawn.Type);
+            newCivilian.setWalking(true);
             newCivilian.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
             newCivilian.PersonNavigator.setDestination(posToSpawn.NodeUsed.getRandomConnectedNodeWithoutFullPOI());
+            newCivilian.ExitNodes = findExitNodeForType(posToSpawn.Type);
+
+            
             _civilians.Add(newCivilian);
             _randomizer.RandomizePerson(newCivilian);
         }
+    }
+
+    public List<Node> findExitNodeForType(PositionType.PositionsType type)
+    {
+        return ExitNodes.FindAll(x => x.type.positionType == type);
     }
 
     void SpawnPrisoners()
@@ -97,6 +119,8 @@ public class PersonsSpawner : MonoBehaviour
             newPrisoner.gameObject.name = "Prisoner " + i;
             newPrisoner.SetConfirmator(_confirmator);
             newPrisoner.SetPositionType(posToSpawn.Type);
+            newPrisoner.setWalking(true);
+            newPrisoner.ExitNodes = findExitNodeForType(posToSpawn.Type);
 
             newPrisoner.PersonNavigator.setCurrentNode(posToSpawn.NodeUsed);
 

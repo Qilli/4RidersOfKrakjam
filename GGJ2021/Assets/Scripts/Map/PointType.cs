@@ -39,7 +39,7 @@ public class PointType : ScriptableObject
     {
         //toimplement
         //p.setWalking(false) ;
-        Debug.Log("Postać przeszła przez punkt");
+       // Debug.Log("Postać przeszła przez punkt");
 
     }
 
@@ -58,7 +58,6 @@ public class PointType : ScriptableObject
     {
         //toimplement
         p.setWalking(true);
-        Debug.Log("Postać wyszła z punktu");
         p.PersonNavigator.currentNode.personsQueued.Remove(p);
     }
 

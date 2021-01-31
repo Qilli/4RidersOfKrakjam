@@ -25,11 +25,18 @@ public class Follower : MonoBehaviour
 
 	Person p = null;
 
+	[SerializeField]
+	float minSpeedRange = 0.008f;
+	[SerializeField]
+	float maxSpeedRange = 0.01f;
+	[SerializeField]
+	float rushSpeed = 0.0125f;
+
 	/// <summary>
 	/// Absolutny mode do ktorego udadza sie postacie po skonczeniu aktualnej sciezki
 	/// </summary>
 	Node importantNode = null;
-	bool finalNodeComing = false;
+	public bool finalNodeComing = false;
 
 	void Start ()
 	{
@@ -50,7 +57,15 @@ public class Follower : MonoBehaviour
 		m_Start = start;
 		m_End = end;
 		m_Path = m_Graph.GetShortestPath(start, end);
-		m_Speed = Random.Range(0.005f, 0.015f);
+        if (!finalNodeComing)
+        {
+			m_Speed = Random.Range(minSpeedRange, maxSpeedRange);
+		}
+        else
+        {
+			m_Speed = rushSpeed;
+        }
+		
 		Follow(m_Path);
     }
 
@@ -115,8 +130,9 @@ public class Follower : MonoBehaviour
 	{
 		if ( m_Current != null && !stoppedByBagietas)
 		{
+			Debug.Log(m_Speed);
 			transform.position = Vector3.MoveTowards ( transform.position, m_Current.transform.position, m_Speed );
-		}
+		}	
 	}
 
     private void OnDrawGizmos()

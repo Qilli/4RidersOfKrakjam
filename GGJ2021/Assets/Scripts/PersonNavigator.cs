@@ -27,9 +27,8 @@ public class PersonNavigator : MonoBehaviour
     bool finalNodeComing = false;
 
 
-    void setImportantNode(Node n)
+    public void setImportantNode(Node n)
     {
-        Debug.Log("Important node changed");
         importantNode = n;
     }
 
@@ -44,12 +43,12 @@ public class PersonNavigator : MonoBehaviour
     {
         if(currentNode == null)
         {
-            Debug.Log("current node error");
+            Debug.LogWarning("current node error");
             return;
         }
         if(destination == null)
         {
-            Debug.Log("Destination null");
+            Debug.LogWarning("Destination null");
             return;
         }
 
@@ -91,29 +90,28 @@ public class PersonNavigator : MonoBehaviour
         }
         
         if(follower.ended)
-        {
+        {   
            // p.setWalking(false);
             timer += Time.deltaTime;
             if(timer < waitTimeInNextPoint)
                 return;
         }
 
-        if(currentNode != null && currentNode == follower.lastNode && follower.ended)
+        if (follower.ended && importantNode != null && !finalNodeComing)
+        {
+            setDestination(importantNode);
+            follower.finalNodeComing = true;
+            finalNodeComing = true;
+        }
+
+
+        if (currentNode != null && currentNode == follower.lastNode && follower.ended && !finalNodeComing)
         {
             int nodesLength = currentNode.connections.Count;
             if(nodesLength > 0)
             {
-                Debug.Log("randomize new node");
-                if(importantNode != null && !finalNodeComing)
-                {
-                    setDestination(importantNode);
-                    finalNodeComing = true;
-                }
-                else
-                {
                     int rand = Random.Range(0, nodesLength);
                     setDestination(currentNode.connections[rand]);
-                }
 
                 timer = 0;
             }
@@ -128,7 +126,8 @@ public class PersonNavigator : MonoBehaviour
         //Debug.Log(currentNode.connections.Count);
     }
 
-    //debug
+
+
     [SerializeField]
     Node endNode;
     [ContextMenu("go to end node")]

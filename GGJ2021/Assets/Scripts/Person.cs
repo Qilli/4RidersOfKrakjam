@@ -38,6 +38,7 @@ public class Person : MonoBehaviour
     public PersonNavigator PersonNavigator;
     float initScaleX;
     Transport _transport = null;
+    public List<Node> ExitNodes = new List<Node>();
 
     public void SetAsPrisoner(PrisonerReference reference)
     {
@@ -134,14 +135,25 @@ public class Person : MonoBehaviour
     private void GoToPlatform()
     {
         // Move into designated position of waiting for transport NEAR it.
-        Debug.Log("Moving to platform");
+
+        //znajdz losowy exit node
+
+        List<Node> nodes = PersonNavigator.p.ExitNodes;
+
+
+        if(nodes.Count <= 0)
+        {
+            return;
+        }
+        int randomizedIndex = UnityEngine.Random.Range(0, nodes.Count);
+        Node foundNode = nodes[randomizedIndex];
+        PersonNavigator.setImportantNode(foundNode);
     }
 
     private void BoardTransport()
     {
         // Some logic to navigate us INSIDE transport
         // Call Board transprot on transport when arrived
-        Debug.Log("Boarding");
         _transport.BoardTransport(this);
     }
 

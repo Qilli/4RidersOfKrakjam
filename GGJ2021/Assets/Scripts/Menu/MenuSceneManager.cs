@@ -10,7 +10,6 @@ public class MenuSceneManager : MonoBehaviour
     public void StartGameHandler()
     {
         SceneManager.LoadScene(1);
-        Debug.Log("Gamestarted");
     }
 
     public void QuitApplication()

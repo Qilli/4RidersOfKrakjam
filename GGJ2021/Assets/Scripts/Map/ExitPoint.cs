@@ -6,7 +6,6 @@ using UnityEngine;
 public class ExitPoint : PointType
 {
 
-    bool lastCall = false;
     public override void onEnter(Person p)
     {
         base.onEnter(p);
@@ -14,20 +13,16 @@ public class ExitPoint : PointType
 
     public override void onFinished(Person p)
     {
-        if (!lastCall)
-        {
-            return;
-        }
+        base.onFinished(p); 
 
         p.PersonNavigator.follower.stopPerson();
         base.onEnter(p);
-        p.gameObject.SetActive(false); //testowo
+        //m_Speed
         //przyparentuj pod cos
     }
 
     public override void onExit(Person p)
     {
-        Debug.LogError("NIE POWINIEN BYC EXIT");
     }
 
 }

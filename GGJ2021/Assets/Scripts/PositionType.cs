@@ -13,6 +13,8 @@ public class PositionType : MonoBehaviour
 
     public Node NodeUsed { get => nodeUsed;  }
 
+    public bool BlockSpawn = false;
+
     private void Awake()
     {
         nodeUsed = GetComponent<Node>();

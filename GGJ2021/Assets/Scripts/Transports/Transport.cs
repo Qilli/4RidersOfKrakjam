@@ -24,20 +24,26 @@ public class Transport : MonoBehaviour
     [SerializeField] AudioClip _arrivalClip = null;
     [SerializeField] AudioClip _departureClip = null;
 
-    protected bool _isArrived = false;
+    protected bool _ArrivdeAndWaiting = false;
     protected bool _canDepart = false;
 
     public bool IsDeparted { get { return _canDepart; } }
-    public bool IsArrived { get { return _isArrived; } }
+    public bool IsArrived { get { return _ArrivdeAndWaiting; } }
 
     private void Awake()
     {
         this.enabled = false;
+        persons = FindObjectsOfType<Person>();
     }
 
     public virtual void BoardTransport(Person person)
     {
-        person.transform.SetParent(this.transform);
+        //person.transform.SetParent(this.transform);
+        if (person.ExitNodes.Contains(person.PersonNavigator.follower.lastNode))
+        {
+            person.gameObject.SetActive(false);
+        }
+
         _passengersOnBoard.Add(person);
     }
 
@@ -76,7 +82,7 @@ public class Transport : MonoBehaviour
     public virtual void Update()
     {
         MoveToArrival();
-
+        //handleGetPersonsInside();
         MoveToDeparture();
     }
 
@@ -88,7 +94,7 @@ public class Transport : MonoBehaviour
 
             if(this.transform.position == _placeToArrive.position)
             {
-                _isArrived = true;
+                _ArrivdeAndWaiting = true;
 
                 Invoke(nameof(StartDeparting), _departureDelay);
 
@@ -105,10 +111,29 @@ public class Transport : MonoBehaviour
         }
     }
 
+    Person[] persons;
+    /*
+    void handleGetPersonsInside()
+    {
+        if (_ArrivdeAndWaiting)
+        {
+            foreach (var p in persons)
+            {
+                if(p == null)
+                {
+                    return;
+                }
+                    p.TransportHasArrived(_type, this);
+            }
+        }
+    }
+    */
+
     private void MoveToDeparture()
     {
         if(_canDepart)
         {
+            _ArrivdeAndWaiting = false;
             this.transform.position = Vector3.MoveTowards(this.transform.position, _placeToDepart.position, _speed * Time.deltaTime);
 
             if(this.transform.position == _placeToDepart.position)
